@@ -25,14 +25,8 @@ const CreateJobber = () => {
 
     }
     console.log(details);
-    axios.post('http://fr33dz.pythonanywhere.com/api/jobber/', details)
+    axios.post('https://fr33dz.pythonanywhere.com/api/jobber/', details)
     .then(response => setJobber({ jobber: response }));
-    // axios.get('http://fr33dz.pythonanywhere.com/api/jobber')
-    // .then(res => {
-    //   const persons = res.data;
-    //   console.log(persons)
-    // })
-
 
   }
   return (

@@ -15,17 +15,12 @@ const GetCallback = () => {
       setShowPopup(!showPopup);
     }
 
-    const onOpenUpdatePopup = async (e) => {
-      console.log('onOpenUpdatePopup', callback)
-    }
-
-
     useEffect(() => {
       fetchData();
     }, []);
   
     const fetchData = () => {
-      axios.get('http://fr33dz.pythonanywhere.com/api/callback/'+id)
+      axios.get('https://fr33dz.pythonanywhere.com/api/callback/'+id)
       .then(res => {
         setCallback(res.data)
         console.log(callback)
@@ -40,11 +35,14 @@ const GetCallback = () => {
   return (
     <div className="App">
       {callback.nom}
+      <br/>
       {callback.prenom}
+      <br/>
       {callback.phone}
-      
+      <br/>
       <button type="button" className="btn btn-primary" onClick={togglePopup}>Update</button>
-      
+      <br/>
+
       {showPopup && (
         <div className="popup">
           <div className="popup-content">

@@ -2,36 +2,37 @@ import React, { useEffect, useState } from 'react';
 
 import axios from 'axios'; 
 
-const UpdateCallback = (props) => {
-  const [callback, setCallback] = useState();
+const UpdateRdv = (props) => {
+  const [rdv, setRdv] = useState();
   const [checked, setChecked] = useState(props.data.appel);
 
   const handleChange = () => {
     setChecked(!checked);
   }
   
-  const update_Callback = async (e) => {
+  const update_Rdv = async (e) => {
     console.log(props.data.id)
     e.preventDefault();
-    const { prenom, nom, numero, appel, date_appel } = e.target.elements;
+    const { prenom, nom, numero, email, appel, date_appel } = e.target.elements;
     let details = {
-        "prenom": prenom.value, 
-        "nom": nom.value,
-        "numero": numero.value,
-        // "appel": appel.value = 'on' ? true : false,
-        "appel": checked,
-        "date_appel": date_appel.value,
-    }
+      "prenom": prenom.value, 
+      "nom": nom.value,
+      "numero": numero.value,
+      "email": email.value,
+      "appel": checked,
+      "date_appel": date_appel.value,
+
+  }
     
     console.log(details);
-    axios.put('https://fr33dz.pythonanywhere.com/api/callback/'+props.data.id+"/", details)
-    .then(response => setCallback({ callback: response }));
+    axios.put('https://fr33dz.pythonanywhere.com/api/rdv/'+props.data.id+"/", details)
+    .then(response => setRdv({ rdv: response }));
   }
 
   return (
     <div className=''>
       
-      <form  onSubmit={update_Callback}>
+      <form  onSubmit={update_Rdv}>
         <div className="row">
           <div className="col">
             <label>Prénom</label>
@@ -53,11 +54,15 @@ const UpdateCallback = (props) => {
           <div className="col">
             <label>numero</label>
             <input type="tel" id="numero" className="form-control" placeholder="Numero" pattern="[0-9]{10}" defaultValue={props.data.numero}/>
-            
           </div>
         </div>
 
         <div className="row">
+          <div className="col">
+            <label>email</label> <br/>
+            <input type="email" id="email" className="form-control" placeholder="Email" defaultValue={props.data.email}/>
+          </div>
+
           <div className="col">
             <label>Appel</label> <br/>
             <input type="checkbox" id="appel" checked={checked} onChange={handleChange} />
@@ -65,11 +70,13 @@ const UpdateCallback = (props) => {
 
         </div>
 
-        <button type="submit" className="btn btn-primary">Update Callback</button>
+
+
+        <button type="submit" className="btn btn-primary">Update rdv</button>
 
       </form>
     </div>
   );
 }
 
-export default UpdateCallback;
+export default UpdateRdv;

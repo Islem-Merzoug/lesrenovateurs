@@ -13,7 +13,7 @@ const GetCallbacks = () => {
     }, []);
   
     const fetchData = () => {
-      axios.get('http://fr33dz.pythonanywhere.com/api/callback')
+      axios.get('https://fr33dz.pythonanywhere.com/api/callback')
       .then(res => {
         setCallbacks(res.data)
         console.log(callbacks);
@@ -23,9 +23,24 @@ const GetCallbacks = () => {
         });
     };
 
+    const handleRemove = (id) => {
+      console.log(id)
+      axios.delete('https://fr33dz.pythonanywhere.com/api/callback/'+id)
+      .then(res => {
+        // setRdvs(res.data)
+        console.log(res);
+        })
+      .catch((error) => {
+          console.log(error);
+        });
+
+      const newTableData = callbacks.filter((row) => row.id !== id);
+      setCallbacks(newTableData);
+    };
+
   return (
     <div className="App"> 
-      All Jobbers:
+      All callbacks:
       <table className="table">
         <thead>
           <tr>
@@ -40,7 +55,7 @@ const GetCallbacks = () => {
         <tbody>
           {
             callbacks?.map((row, index) =>
-              <tr key={index} >
+            <tr key={row.id} >
                   <td >
                     <div style={{textAlign: 'center', fontSize:'1rem'}}>{row.nom}</div> 
                   </td>
@@ -60,8 +75,10 @@ const GetCallbacks = () => {
                     <div style={{fontSize:'1rem'}}>
                       <Link to={`/GetCallback/${row.id}`}>View Details</Link>
                     </div> 
-                    
-                  </td>                        
+                  </td>    
+                  <td>
+                    <Link onClick={() => handleRemove(row.id)}>Remove</Link>
+                  </td>                    
               </tr>
               )
           }

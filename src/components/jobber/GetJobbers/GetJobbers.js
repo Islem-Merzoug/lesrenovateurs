@@ -13,7 +13,7 @@ const GetCallbacks = () => {
     }, []);
   
     const fetchData = () => {
-      axios.get('http://fr33dz.pythonanywhere.com/api/jobber')
+      axios.get('https://fr33dz.pythonanywhere.com/api/jobber')
       .then(res => {
         setJobbers(res.data)
         console.log(jobbers)
@@ -23,7 +23,20 @@ const GetCallbacks = () => {
         });
     };
 
+    const handleRemove = (id) => {
+      console.log(id)
+      axios.delete('http:s//fr33dz.pythonanywhere.com/api/jobber/'+id)
+      .then(res => {
+        // setRdvs(res.data)
+        console.log(res);
+        })
+      .catch((error) => {
+          console.log(error);
+        });
 
+      const newTableData = jobbers.filter((row) => row.id !== id);
+      setJobbers(newTableData);
+    };
 
   return (
     <div className="App"> 
@@ -41,12 +54,13 @@ const GetCallbacks = () => {
             <th>Niveau d'études</th>
             <th>Villes</th>
             <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           {
             jobbers?.map((row, index) =>
-              <tr key={index} >
+              <tr key={row.id} >
                   <td >
                     <div style={{textAlign: 'center', fontSize:'1rem'}}>{row.nom}</div> 
                   </td>
@@ -76,11 +90,12 @@ const GetCallbacks = () => {
                   </td>  
                   <td >
                     <div style={{fontSize:'1rem'}}>
-                      {/* <button type="button" className="btn btn-link" onClick={routeChange(index)}>Link</button>   */}
                       <Link to={`/GetJobber/${row.id}`}>View Details</Link>
                     </div> 
-                    
-                  </td>                        
+                  </td>    
+                  <td>
+                    <Link onClick={() => handleRemove(row.id)}>Remove</Link>
+                  </td>                    
               </tr>
               )
           }

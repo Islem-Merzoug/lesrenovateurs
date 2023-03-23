@@ -19,7 +19,7 @@ const CreateRdv = () => {
 
     }
     console.log(details);
-    axios.post('http://fr33dz.pythonanywhere.com/api/rdv/', details)
+    axios.post('https://fr33dz.pythonanywhere.com/api/rdv/', details)
     .then(response => setRdv({ rdv: response }));
 
   }

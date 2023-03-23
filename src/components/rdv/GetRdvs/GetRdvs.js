@@ -13,7 +13,7 @@ const GetRdvs = () => {
     }, []);
   
     const fetchData = () => {
-      axios.get('http://fr33dz.pythonanywhere.com/api/rdv')
+      axios.get('https://fr33dz.pythonanywhere.com/api/rdv')
       .then(res => {
         setRdvs(res.data)
         console.log(rdvs);
@@ -24,21 +24,9 @@ const GetRdvs = () => {
 
     };
 
-
-    // useEffect(() => {
-    //   axios.get('http://fr33dz.pythonanywhere.com/api/rdv')
-    //   .then(res => {
-    //     setRdvs(res.data)
-    //     console.log(rdvs);
-    //     })
-    //   .catch((error) => {
-    //       console.log(error);
-    //     });
-    // });
-
     const handleRemove = (id) => {
       console.log(id)
-      axios.delete('http://fr33dz.pythonanywhere.com/api/rdv/'+id)
+      axios.delete('https://fr33dz.pythonanywhere.com/api/rdv/'+id)
       .then(res => {
         // setRdvs(res.data)
         console.log(res);
@@ -54,7 +42,7 @@ const GetRdvs = () => {
 
   return (
     <div className="App"> 
-      All Jobbers:
+      All Rdvs:
       <table className="table">
         <thead>
           <tr>
@@ -95,15 +83,9 @@ const GetRdvs = () => {
                       <Link to={`/GetRdv/${row.id}`}>View Details</Link>
                     </div> 
                   </td>
-                  {/* <td >
-                    <div style={{fontSize:'1rem'}}>
-                      <button onClick={handleRemove(row.id)}>delete</button>
-                    </div> 
-                  </td>     */}
                   <td>
-                    <button onClick={() => handleRemove(row.id)}>Remove</button>
+                    <Link onClick={() => handleRemove(row.id)}>Remove</Link>
                   </td>
-                        
               </tr>
               )
           }

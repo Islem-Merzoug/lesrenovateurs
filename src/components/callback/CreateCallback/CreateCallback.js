@@ -18,7 +18,7 @@ const CreateCallback = () => {
 
     }
     console.log(details);
-    axios.post('http://fr33dz.pythonanywhere.com/api/callback/', details)
+    axios.post('https://fr33dz.pythonanywhere.com/api/callback/', details)
     .then(response => setCallback({ callback: response }));
 
   }
