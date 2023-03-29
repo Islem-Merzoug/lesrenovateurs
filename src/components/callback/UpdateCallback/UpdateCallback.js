@@ -25,7 +25,16 @@ const UpdateCallback = (props) => {
     
     console.log(details);
     axios.put('https://fr33dz.pythonanywhere.com/api/callback/'+props.data.id+"/", details)
-    .then(response => setCallback({ callback: response }));
+    .then(response => setCallback({ callback: response }))
+    .catch(function (error) {
+      if (error.response) {
+        let errorMsg = ""
+        for (const property in error.response.data) {
+          errorMsg += `${property}: ${error.response.data[property]}\n`;
+        }
+        alert(errorMsg);
+      } 
+    });
   }
 
   return (

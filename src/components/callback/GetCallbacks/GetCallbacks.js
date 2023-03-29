@@ -13,13 +13,19 @@ const GetCallbacks = () => {
     }, []);
   
     const fetchData = () => {
-      axios.get('https://fr33dz.pythonanywhere.com/api/callback')
+      axios.get('https://fr33dz.pythonanywhere.com/api/callback/')
       .then(res => {
         setCallbacks(res.data)
         console.log(callbacks);
         })
-      .catch((error) => {
-          console.log(error);
+        .catch(function (error) {
+          if (error.response) {
+            let errorMsg = ""
+            for (const property in error.response.data) {
+              errorMsg += `${property}: ${error.response.data[property]}\n`;
+            }
+            alert(errorMsg);
+          } 
         });
     };
 
@@ -30,8 +36,14 @@ const GetCallbacks = () => {
         // setRdvs(res.data)
         console.log(res);
         })
-      .catch((error) => {
-          console.log(error);
+        .catch(function (error) {
+          if (error.response) {
+            let errorMsg = ""
+            for (const property in error.response.data) {
+              errorMsg += `${property}: ${error.response.data[property]}\n`;
+            }
+            alert(errorMsg);
+          } 
         });
 
       const newTableData = callbacks.filter((row) => row.id !== id);
@@ -40,7 +52,6 @@ const GetCallbacks = () => {
 
   return (
     <div className="App"> 
-      All callbacks:
       <table className="table">
         <thead>
           <tr>
@@ -49,6 +60,7 @@ const GetCallbacks = () => {
             <th>Numero</th>
             <th>Appel</th>
             <th>Date appel</th>
+            <th></th>
             <th></th>
           </tr>
         </thead>

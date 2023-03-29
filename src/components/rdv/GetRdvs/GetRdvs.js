@@ -13,7 +13,7 @@ const GetRdvs = () => {
     }, []);
   
     const fetchData = () => {
-      axios.get('https://fr33dz.pythonanywhere.com/api/rdv')
+      axios.get('https://fr33dz.pythonanywhere.com/api/rdv/')
       .then(res => {
         setRdvs(res.data)
         console.log(rdvs);
@@ -31,8 +31,14 @@ const GetRdvs = () => {
         // setRdvs(res.data)
         console.log(res);
         })
-      .catch((error) => {
-          console.log(error);
+        .catch(function (error) {
+          if (error.response) {
+            let errorMsg = ""
+            for (const property in error.response.data) {
+              errorMsg += `${property}: ${error.response.data[property]}\n`;
+            }
+            alert(errorMsg);
+          } 
         });
 
       const newTableData = rdvs.filter((row) => row.id !== id);
@@ -42,7 +48,6 @@ const GetRdvs = () => {
 
   return (
     <div className="App"> 
-      All Rdvs:
       <table className="table">
         <thead>
           <tr>

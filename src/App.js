@@ -13,15 +13,31 @@ import CreateRdv from './components/rdv/CreateRdv/CreateRdv';
 import GetRdvs from './components/rdv/GetRdvs/GetRdvs';
 import GetRdv from './components/rdv/GetRdv/GetRdv';
 
-import Header from './pages/Header/Header';
+import Header from './components/Header/Header';
 import { useState } from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import MakeAnAppointment from './pages/MakeAnAppointment/MakeAnAppointment';
 import Profil from './pages/Profil/Profil';
 import Login from './components/Auth/Login/Login';
+import Footer from './components/Footer/Footer';
+import Signup from './components/Auth/Signup/Signup';
+import PrivateRoute from './components/Auth/ProtectedRoutes';
+import { useEffect } from 'react';
+import { authservice } from './services/auth.service';
+import ProtectedRoutes from './components/Auth/ProtectedRoutes';
 
 function App() {
+  const [isLogged, setIsLogged] = useState();
+  const [isExpired, setIsExpired] = useState(false);
+  
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = () => {
+    setIsLogged(authservice.isLogged())
+  };
 
   return (
 
@@ -42,8 +58,14 @@ function App() {
           <Route path='/GetRdv/:id' element={<GetRdv/>} />
 
           <Route path='/MakeAnAppointment/' element={<MakeAnAppointment/>} />
-          <Route path='/Profil/' element={<Profil/>} />
           <Route path='/Login/' element={<Login/>} />
+          <Route path='/Signup/' element={<Signup/>} />
+      
+          {/* add all protected routes here: */}
+          <Route element={<ProtectedRoutes />}>
+            <Route path='/Profil/' element={<Profil/>} />
+          </Route>
+
 
 
         </Routes>
@@ -61,7 +83,8 @@ function App() {
         <br/>
         <Link to="/GetRdvs">Go to GetRdvs</Link>
         <br/>
-
+        
+        <Footer/>
       </BrowserRouter>
 
   );

@@ -18,7 +18,7 @@ function Profil() {
         <Col sm={2}>
           <Nav variant="pills" className="flex-column">
             <Nav.Item>
-              <Nav.Link eventKey="first">My jobbers</Nav.Link>
+              <Nav.Link eventKey="first">About</Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link eventKey="second">My appointements</Nav.Link>
@@ -27,31 +27,21 @@ function Profil() {
               <Nav.Link eventKey="third">My callbacks</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="fourth">Log out</Nav.Link>
+              <Nav.Link eventKey="fourth">Change Password</Nav.Link>
             </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="fifth">Change Password</Nav.Link>
-            </Nav.Item>
-
           </Nav>
         </Col>
 
         <Col sm={10}>
           <Tab.Content>
             <Tab.Pane eventKey="first">
-                <GetJobbers/>
+                About
             </Tab.Pane>
             <Tab.Pane eventKey="second">
-                <GetCallbacks/>
+              <GetRdvs/>
             </Tab.Pane>
             <Tab.Pane eventKey="third">
-                <GetRdvs/>
-            </Tab.Pane>
-            <Tab.Pane eventKey="fourth">
-                <GetRdvs/>
-            </Tab.Pane>
-            <Tab.Pane eventKey="fifth">
-                <GetRdvs/>
+                <GetCallbacks/>
             </Tab.Pane>
           </Tab.Content>
         </Col>

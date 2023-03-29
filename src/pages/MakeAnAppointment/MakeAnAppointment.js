@@ -9,7 +9,7 @@ function MakeAnAppointment() {
   const [key, setKey] = useState('Rdv');
 
   return (
-    <div className='makeAnAppointment-container'>
+    <div style={{margin: '2%'}}>
 
       <Tabs
         defaultActiveKey="Rdv"

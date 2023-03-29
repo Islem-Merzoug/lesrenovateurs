@@ -25,8 +25,14 @@ const GetRdv = () => {
         setRdv(res.data)
         console.log(rdv)
         })
-      .catch((error) => {
-          console.log(error);
+        .catch(function (error) {
+          if (error.response) {
+            let errorMsg = ""
+            for (const property in error.response.data) {
+              errorMsg += `${property}: ${error.response.data[property]}\n`;
+            }
+            alert(errorMsg);
+          } 
         });
 
     };

@@ -26,7 +26,16 @@ const UpdateRdv = (props) => {
     
     console.log(details);
     axios.put('https://fr33dz.pythonanywhere.com/api/rdv/'+props.data.id+"/", details)
-    .then(response => setRdv({ rdv: response }));
+    .then(response => setRdv({ rdv: response }))
+    .catch(function (error) {
+      if (error.response) {
+        let errorMsg = ""
+        for (const property in error.response.data) {
+          errorMsg += `${property}: ${error.response.data[property]}\n`;
+        }
+        alert(errorMsg);
+      } 
+    });
   }
 
   return (

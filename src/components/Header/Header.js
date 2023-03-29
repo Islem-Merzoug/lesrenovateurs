@@ -19,6 +19,8 @@ function Header() {
 
   const logout = async (e) => {
     localStorage.removeItem('token')
+    window.location.reload(false);
+
   }
   return (
     <div className="header">
@@ -28,16 +30,17 @@ function Header() {
         
           <li><Link to="/CreateJobber">Rejoindre le réseau</Link></li>
           <li><Link to="/MakeAnAppointment">Prendre un rendez vous</Link></li>
+          <li><Link to="/Signup">Signup</Link></li>
 
           { !isExpired && isLogged ? (
               <>
-                <li> 
-                  <Link to="/Profil">Profil</Link>
-                </li>
                 <li>
                   <Link to={'/'}>
                     <span onClick={logout}>Logout</span>
                   </Link>
+                </li>
+                <li> 
+                  <Link to="/Profil">Profil</Link>
                 </li>
               </>
               ) : (

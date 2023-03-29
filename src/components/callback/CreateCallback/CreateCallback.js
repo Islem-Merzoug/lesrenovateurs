@@ -19,7 +19,16 @@ const CreateCallback = () => {
     }
     console.log(details);
     axios.post('https://fr33dz.pythonanywhere.com/api/callback/', details)
-    .then(response => setCallback({ callback: response }));
+    .then(response => setCallback({ callback: response }))
+    .catch(function (error) {
+      if (error.response) {
+        let errorMsg = ""
+        for (const property in error.response.data) {
+          errorMsg += `${property}: ${error.response.data[property]}\n`;
+        }
+        alert(errorMsg);
+      } 
+    });
 
   }
   return (
