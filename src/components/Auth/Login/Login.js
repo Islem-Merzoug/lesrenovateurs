@@ -2,16 +2,18 @@ import React, { useEffect, useState } from 'react';
 
 import axios from 'axios'; 
 import { authservice } from '../../../services/auth.service';
-// import jwt from 'jsonwebtoken';
 import { useNavigate } from 'react-router-dom'; 
+import { Spinner } from 'react-bootstrap';
 
 const Login = () => {
   let navigate = useNavigate ();
+  const [showSpinner, setShowSpinner] = useState(false);
 
   const [logininfo, setLogininfo] = useState();
 
   const login = async (e) => {
-   
+    setShowSpinner(!showSpinner)
+
     e.preventDefault();
     const { username, password } = e.target.elements;
     let details = {
@@ -24,6 +26,7 @@ const Login = () => {
     .then(res => {
         setLogininfo(res)
         authservice.saveToken(res.data.token)
+        setShowSpinner(!showSpinner)
         navigate('/Profil', { replace: true });
         window.location.reload(false);
 
@@ -35,6 +38,8 @@ const Login = () => {
             errorMsg += `${property}: ${error.response.data[property]}\n`;
           }
           alert(errorMsg);
+          setShowSpinner(!showSpinner)
+
         } 
       });
 
@@ -55,9 +60,13 @@ const Login = () => {
           </div>
         </div>
         <br/>
-        {/* <div style={{textAlign: 'center'}}> */}
-            <button type="submit" className="btn btn-primary">Login</button>
-        {/* </div> */}
+
+        <div style={{textAlign: 'center'}}>
+          <button type="submit" className="btn btn-primary">Login</button>
+        </div>
+        <div style={{textAlign: 'center', margin: '0.5rem'}}>
+          {showSpinner && <Spinner />}
+        </div>
 
       </form>
     </div>

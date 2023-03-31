@@ -2,6 +2,10 @@ import jwt_decode from "jwt-decode";
 
 let saveToken = (token) => {
     localStorage.setItem('token', token)
+    localStorage.setItem('userId', 1)
+    localStorage.setItem('entrepriseId', 1)
+    localStorage.setItem('clientId', 2)
+    localStorage.setItem('jobberId', 1)
     console.log(localStorage.getItem('token'))
 
 }

@@ -4,11 +4,13 @@ import { Dropdown, DropdownButton } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { authservice } from '../../services/auth.service';
 import './Header.css';
+import { useNavigate } from 'react-router-dom'; 
 
 function Header() {
   const [isLogged, setIsLogged] = useState();
   const [isExpired, setIsExpired] = useState(false);
-  
+  let navigate = useNavigate ();
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -19,8 +21,9 @@ function Header() {
 
   const logout = async (e) => {
     localStorage.removeItem('token')
+    navigate('/Signup', { replace: true });
     window.location.reload(false);
-
+    
   }
   return (
     <div className="header">

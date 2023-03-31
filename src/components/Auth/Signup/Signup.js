@@ -4,7 +4,9 @@ import axios from 'axios';
 import { authservice } from '../../../services/auth.service';
 import CreateJobber from '../../jobber/CreateJobber/CreateJobber';
 import CreateClient from '../../client/CreateClient/CreateClient';
-import { Alert } from 'react-bootstrap';
+import { Alert, Spinner } from 'react-bootstrap';
+import { FidgetSpinner, Bars } from 'react-loader-spinner';
+import WaitingSpinner from '../../Spinner/Spinner';
 // import jwt from 'jsonwebtoken';
 
 const Signup = () => {
@@ -12,13 +14,15 @@ const Signup = () => {
   const [isSignedup, setIsSignedup] = useState(false);
   const [userId, setUserId] = useState();
   const [isToggledAsJobber, setIsToggledAsJobber] = useState(false)
+  const [showSpinner, setShowSpinner] = useState(false);
 
   const handleChange = () => {
     setIsToggledAsJobber(!isToggledAsJobber);
   }
 
   const signup = async (e) => {
-   
+    setShowSpinner(!showSpinner)
+
     e.preventDefault();
     const { email, username, password, password2 } = e.target.elements;
     if (
@@ -37,6 +41,8 @@ const Signup = () => {
           setSignupinfo(res)
           authservice.saveToken(res.data.token)
           setIsSignedup(true)
+          setShowSpinner(!showSpinner)
+
         })
         .catch(function (error) {
           if (error.response) {
@@ -45,6 +51,7 @@ const Signup = () => {
               errorMsg += `${property}: ${error.response.data[property]}\n`;
             }
             alert(errorMsg);
+            setShowSpinner(!showSpinner)
           } 
         });
         
@@ -53,6 +60,8 @@ const Signup = () => {
         
     }else{
       alert("The passwords are different");
+      setShowSpinner(!showSpinner)
+
     }
 
 
@@ -60,6 +69,7 @@ const Signup = () => {
   }
   return (
     <div style={{margin: '2%'}}>
+
       { isSignedup ? (
           <>
             { isToggledAsJobber ? (
@@ -99,16 +109,19 @@ const Signup = () => {
               </div>
 
               <div className="row">
+                
                 <div className="col">
                   <label>Is Jobber ? - if not, so it will be a client ! </label><br/>
                   <input type="checkbox" checked={isToggledAsJobber} onChange={handleChange}/>
                 </div>
               </div>
 
-              <br/>
-              {/* <div style={{textAlign: 'center'}}> */}
-                  <button type="submit" className="btn btn-primary">Signup</button>
-              {/* </div> */}
+              <div style={{textAlign: 'center'}}>
+                <button type="submit" className="btn btn-primary">Signup</button>
+              </div>
+              <div style={{textAlign: 'center', margin: '0.5rem'}}>
+                {showSpinner && <Spinner />}
+              </div>
 
             </form>
           </>

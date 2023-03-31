@@ -2,21 +2,31 @@ import React, { useEffect, useState } from 'react';
 
 import axios from 'axios'; 
 import { useNavigate } from 'react-router-dom'; 
+import { Spinner } from 'react-bootstrap';
 
 const CreateJobber = (props) => {
   const [jobber, setJobber] = useState();
   const [entreprise, setEntreprise] = useState();
   let navigate = useNavigate ();
+  const [showSpinner, setShowSpinner] = useState(false);
 
   const [isJobberCreated, setIsJobberCreated] = useState(false);
   const [isToggledAsEntreprise, setIsToggledAsEntreprise] = useState(false)
+
+  const [image, setImage] = useState(null);
+
+  const handleImageUpload = (e) => {
+    setImage(e.target.files[0]);
+  };
+
 
   const handleChange = () => {
     setIsToggledAsEntreprise(!isToggledAsEntreprise);
   }
 
-  const create_jobber = async (e) => {
-   
+  const createJobber = async (e) => {
+    setShowSpinner(!showSpinner)
+
     e.preventDefault();
     const { prenom, nom, email, password, competences, diplomes, permis, vehicules, niveau_etudes, villes,
       adresse, statut_juridique, numero_siret, numero_tva, tva } = e.target.elements;
@@ -32,9 +42,25 @@ const CreateJobber = (props) => {
         "niveau_etudes": niveau_etudes.value,
         "villes": villes.value,
         "user": props.propValue.data.user.id,
-        "entreprise_id": entreprise
-
+        "entreprise_id": entreprise,
+        "image": image
     }
+
+    const data = new FormData();
+    data.append('prenom', prenom.value);
+    data.append('nom', nom.value);
+    data.append('email', email.value);
+    data.append('password', password.value);
+    data.append('competences', competences.value);
+    data.append('diplomes', diplomes.value);
+    data.append('permis', permis.value);
+    data.append('vehicules', vehicules.value);
+    data.append('niveau_etudes', niveau_etudes.value);
+    data.append('villes', villes.value);
+    data.append('user', props.propValue.data.user.id);
+    data.append('entreprise_id', entreprise);
+    data.append('image', image);
+
 
     if (isToggledAsEntreprise){
       let entrepriseDetails = {
@@ -57,6 +83,8 @@ const CreateJobber = (props) => {
         .then(response => {
           setJobber({ jobber: response })   
           navigate('/Profil', { replace: true });
+          setShowSpinner(!showSpinner)
+
 
         }).catch(function (error) {
           if (error.response) {
@@ -65,6 +93,8 @@ const CreateJobber = (props) => {
               errorMsg += `${property}: ${error.response.data[property]}\n`;
             }
             alert(errorMsg);
+            setShowSpinner(!showSpinner)
+
           } 
         });
     
@@ -77,15 +107,22 @@ const CreateJobber = (props) => {
             errorMsg += `${property}: ${error.response.data[property]}\n`;
           }
           alert(errorMsg);
+          setShowSpinner(!showSpinner)
+
         } 
       });
   
     }else{
       console.log(jobberDetails);
     
-        axios.post('https://fr33dz.pythonanywhere.com/api/jobber/', jobberDetails)         
+        axios.post('https://fr33dz.pythonanywhere.com/api/jobber/', data)         
         .then(response => {
-          setJobber({ jobber: response })      
+          setJobber({ jobber: response })  
+          navigate('/Profil', { replace: true });
+          setShowSpinner(!showSpinner);
+          window.location.reload(false);  
+          alert('Jobber Created successfully');  
+
         })
         .catch(function (error) {
           if (error.response) {
@@ -94,6 +131,8 @@ const CreateJobber = (props) => {
               errorMsg += `${property}: ${error.response.data[property]}\n`;
             }
             alert(errorMsg);
+            setShowSpinner(!showSpinner)
+
           } 
         });
 
@@ -103,11 +142,18 @@ const CreateJobber = (props) => {
   }
   return (
     <div className=''>
-
-
-        <form  onSubmit={create_jobber}>
+        <form  onSubmit={createJobber}>
 
               <div className="row">
+                <div className="col">
+                  <label>Uploaded image</label>
+                  <input type="file" onChange={handleImageUpload} className="form-control"/>
+                  {/* {image && <img src={URL.createObjectURL(image)} alt="uploaded image" />} */}
+                </div>
+
+
+
+
                 <div className="col">
                   <label>Prénom</label>
                   <input type="text" id="prenom" className="form-control" placeholder="Prénom" required/>
@@ -227,8 +273,13 @@ const CreateJobber = (props) => {
                   )
               }
 
-
-              <button type="submit" className="btn btn-primary">Create Jobber</button>
+              <div style={{textAlign: 'center'}}>
+                <button type="submit" className="btn btn-primary">Create Jobber</button>
+              </div>
+              <div style={{textAlign: 'center', margin: '0.5rem'}}>
+                {showSpinner && <Spinner />}
+              </div>
+              
 
             </form>
  

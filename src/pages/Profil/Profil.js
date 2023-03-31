@@ -8,6 +8,7 @@ import Tab from 'react-bootstrap/Tab';
 import GetJobbers from '../../components/jobber/GetJobbers/GetJobbers';
 import GetCallbacks from '../../components/callback/GetCallbacks/GetCallbacks';
 import GetRdvs from '../../components/rdv/GetRdvs/GetRdvs';
+import About from '../../components/About/About';
 
 
 function Profil() {
@@ -35,7 +36,7 @@ function Profil() {
         <Col sm={10}>
           <Tab.Content>
             <Tab.Pane eventKey="first">
-                About
+                <About/>
             </Tab.Pane>
             <Tab.Pane eventKey="second">
               <GetRdvs/>
