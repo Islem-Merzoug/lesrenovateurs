@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 import axios from 'axios'; 
 import { useTable } from 'react-table';
-import "./GetJobber.css";
 import { useParams } from 'react-router-dom';
 import UpdateJobber from '../UpdateJobber/UpdateJobber';
 

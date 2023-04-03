@@ -26,6 +26,10 @@ import PrivateRoute from './components/Auth/ProtectedRoutes';
 import { useEffect } from 'react';
 import { authservice } from './services/auth.service';
 import ProtectedRoutes from './components/Auth/ProtectedRoutes';
+import CreateMission from './components/Mission/CreateMission/CreateMission';
+import GetMissions from './components/Mission/GetMissions/GetMissions';
+import UpdateMission from './components/Mission/UpdateMission/UpdateMission';
+import GetMission from './components/Mission/GetMission/GetMission';
 
 function App() {
   const [isLogged, setIsLogged] = useState();
@@ -64,6 +68,11 @@ function App() {
           {/* add all protected routes here: */}
           <Route element={<ProtectedRoutes />}>
             <Route path='/Profil/' element={<Profil/>} />
+            <Route path='/CreateMission/' element={<CreateMission/>} />
+            <Route path='/GetMissions/' element={<GetMissions/>} />
+            <Route path='/UpdateMission/' element={<UpdateMission/>} />
+            <Route path='/GetMission/:id' element={<GetMission/>} />
+
           </Route>
 
 

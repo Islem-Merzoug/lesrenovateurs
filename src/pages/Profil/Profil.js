@@ -9,6 +9,7 @@ import GetJobbers from '../../components/jobber/GetJobbers/GetJobbers';
 import GetCallbacks from '../../components/callback/GetCallbacks/GetCallbacks';
 import GetRdvs from '../../components/rdv/GetRdvs/GetRdvs';
 import About from '../../components/About/About';
+import GetMissions from '../../components/Mission/GetMissions/GetMissions';
 
 
 function Profil() {
@@ -28,7 +29,7 @@ function Profil() {
               <Nav.Link eventKey="third">My callbacks</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="fourth">Change Password</Nav.Link>
+              <Nav.Link eventKey="fourth">My missions</Nav.Link>
             </Nav.Item>
           </Nav>
         </Col>
@@ -43,6 +44,9 @@ function Profil() {
             </Tab.Pane>
             <Tab.Pane eventKey="third">
                 <GetCallbacks/>
+            </Tab.Pane>
+            <Tab.Pane eventKey="fourth">
+                <GetMissions/>
             </Tab.Pane>
           </Tab.Content>
         </Col>

@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from 'react';
 
 import axios from 'axios'; 
+import { Spinner } from 'react-bootstrap';
 
 const UpdateCallback = (props) => {
   const [callback, setCallback] = useState();
   const [checked, setChecked] = useState(props.data.appel);
+  const [showSpinner, setShowSpinner] = useState(false);
 
   const handleChange = () => {
     setChecked(!checked);
   }
   
   const update_Callback = async (e) => {
+    setShowSpinner(!showSpinner)
+
     console.log(props.data.id)
     e.preventDefault();
     const { prenom, nom, numero, appel, date_appel } = e.target.elements;
@@ -25,8 +29,13 @@ const UpdateCallback = (props) => {
     
     console.log(details);
     axios.put('https://fr33dz.pythonanywhere.com/api/callback/'+props.data.id+"/", details)
-    .then(response => setCallback({ callback: response }))
+    .then(response => {
+      setShowSpinner(!showSpinner)
+      setCallback({ callback: response })
+    })
     .catch(function (error) {
+      setShowSpinner(!showSpinner)
+
       if (error.response) {
         let errorMsg = ""
         for (const property in error.response.data) {
@@ -74,7 +83,13 @@ const UpdateCallback = (props) => {
 
         </div>
 
-        <button type="submit" className="btn btn-primary">Update Callback</button>
+        <br/>
+        <div style={{textAlign: 'center'}}>
+          <button type="submit" className="btn btn-primary">Update Callback</button>
+        </div>
+        <div style={{textAlign: 'center', margin: '0.5rem'}}>
+          {showSpinner && <Spinner />}
+        </div>
 
       </form>
     </div>

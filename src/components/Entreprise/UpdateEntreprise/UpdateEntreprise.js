@@ -13,7 +13,7 @@ const UpdateEntreprise = (props) => {
   }
   
   const updateEntreprise = async (e) => {
-    setShowSpinner(!showSpinner)
+    setShowSpinner(true)
 
     console.log(props?.data.id)
     e.preventDefault();
@@ -30,11 +30,12 @@ const UpdateEntreprise = (props) => {
     console.log(details);
     axios.put('https://fr33dz.pythonanywhere.com/api/entreprise/'+props?.data.id+"/", details)
     .then(response => {
-      setShowSpinner(!showSpinner)
+      setShowSpinner(false)
       setEntreprise({ entreprise: response })
+      alert('Entreprise updated successfully'); 
     })
     .catch(function (error) {
-      setShowSpinner(!showSpinner)
+      setShowSpinner(false)
       if (error.response) {
         let errorMsg = ""
         for (const property in error.response.data) {
@@ -80,17 +81,13 @@ const UpdateEntreprise = (props) => {
             </div>
 
             <div className="col">
-              <label>statut_juridique</label>
-              {/* <input type="text" id="statut_juridique" className="form-control" placeholder="Atatut juridique" required/> */}
-              <br/>
-              {props?.data.statut_juridique}
-              <select id="statut_juridique" name="Statut Juridique" className="form-control" defaultValue={props?.data.statut_juridique}>
+              <label>Statut Juridique</label>
+              <select id="statut_juridique" name="Statut Juridique" className="form-control" required defaultValue={props?.data.statut_juridique}>
                 <option value="Auto-entreprise / micro entreprise avec option TVA">Auto-entreprise / micro entreprise avec option TVA</option>
                 <option value="Auto-entreprise / micro entreprise sans option TVA">Auto-entreprise / micro entreprise sans option TVA</option>
                 <option value="SARL/EURL">SARL/EURL</option>
                 <option value="SAS/SASU">SAS/SASU</option>
               </select>
-
             </div>
 
         </div>

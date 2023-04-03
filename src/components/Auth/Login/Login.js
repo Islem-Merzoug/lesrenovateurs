@@ -25,25 +25,23 @@ const Login = () => {
     axios.post('https://fr33dz.pythonanywhere.com/api/login/', details)
     .then(res => {
         setLogininfo(res)
-        authservice.saveToken(res.data.token)
+        authservice.saveToken(res.data.token, res.data.user)
         setShowSpinner(!showSpinner)
         navigate('/Profil', { replace: true });
         window.location.reload(false);
 
       })
       .catch(function (error) {
+        setShowSpinner(!showSpinner)
         if (error.response) {
           let errorMsg = ""
           for (const property in error.response.data) {
             errorMsg += `${property}: ${error.response.data[property]}\n`;
           }
           alert(errorMsg);
-          setShowSpinner(!showSpinner)
 
         } 
       });
-
-
   }
   return (
     <div style={{margin: '2%'}}>
@@ -61,6 +59,7 @@ const Login = () => {
         </div>
         <br/>
 
+        <br/>
         <div style={{textAlign: 'center'}}>
           <button type="submit" className="btn btn-primary">Login</button>
         </div>

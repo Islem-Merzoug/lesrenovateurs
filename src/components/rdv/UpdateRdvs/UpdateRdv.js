@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
 import axios from 'axios'; 
+import { Spinner } from 'react-bootstrap';
 
 const UpdateRdv = (props) => {
   const [rdv, setRdv] = useState();
   const [checked, setChecked] = useState(props.data.appel);
+  const [showSpinner, setShowSpinner] = useState(false);
 
   const handleChange = () => {
     setChecked(!checked);
@@ -26,8 +28,12 @@ const UpdateRdv = (props) => {
     
     console.log(details);
     axios.put('https://fr33dz.pythonanywhere.com/api/rdv/'+props.data.id+"/", details)
-    .then(response => setRdv({ rdv: response }))
+    .then(response => {
+      setShowSpinner(!showSpinner)
+      setRdv({ rdv: response })
+    })
     .catch(function (error) {
+      setShowSpinner(!showSpinner)
       if (error.response) {
         let errorMsg = ""
         for (const property in error.response.data) {
@@ -79,9 +85,14 @@ const UpdateRdv = (props) => {
 
         </div>
 
+        <br/>
+        <div style={{textAlign: 'center'}}>
+          <button type="submit" className="btn btn-primary">Update rdv</button>
+        </div>
+        <div style={{textAlign: 'center', margin: '0.5rem'}}>
+          {showSpinner && <Spinner />}
+        </div>
 
-
-        <button type="submit" className="btn btn-primary">Update rdv</button>
 
       </form>
     </div>

@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios'; 
 import { useNavigate } from 'react-router-dom';
 import { Spinner } from 'react-bootstrap';
-// axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-// axios.defaults.xsrfCookieName = "csrftoken";
 
 const CreateClient = (props) => {
   const [jobber, setJobber] = useState();
@@ -17,7 +15,8 @@ const CreateClient = (props) => {
   };
 
   const create_client = async (e) => {
-   
+    setShowSpinner(true)
+
     e.preventDefault();
     const { adresse } = e.target.elements;
     let details = {
@@ -39,7 +38,7 @@ const CreateClient = (props) => {
       window.location.reload(false);
       navigate('/Profil', { replace: true });
       window.location.reload(false);
-      setShowSpinner(!showSpinner)
+      setShowSpinner(false)
       alert('Client Created successfully');  
       
 
@@ -51,7 +50,7 @@ const CreateClient = (props) => {
           errorMsg += `${property}: ${error.response.data[property]}\n`;
         }
         alert(errorMsg);
-        setShowSpinner(!showSpinner)
+        setShowSpinner(false)
       } 
     });
 
@@ -63,19 +62,22 @@ const CreateClient = (props) => {
 
         <div className="row">
           <div className="col">
-            <label>Uploaded image</label>
-            <input type="file" onChange={handleImageUpload} className="form-control"/>
-            {/* {image && <img src={URL.createObjectURL(image)} alt="uploaded image" />} */}
-          </div>
-          <div className="col">
             <label>Adresse</label>
             <textarea type="text" id="adresse" className="form-control" placeholder="Adresse" required/>
           </div>
         </div>
+        
+        <div className="row">
+          <div className="col">
+            <label>Uploaded image</label>
+            <input type="file" accept="image/*" onChange={handleImageUpload} className="form-control" required/>
+            <div style={{textAlign:'center'}}>
+              {image && <img style={{marginTop: '0.5rem', maxWidth: '10rem'}} src={URL.createObjectURL(image)} alt="uploaded image" />}
+            </div>
+          </div>
+        </div>
 
         <br/>
-
-        
         <div style={{textAlign: 'center'}}>
           <button type="submit" className="btn btn-primary">Create Client</button>
         </div>

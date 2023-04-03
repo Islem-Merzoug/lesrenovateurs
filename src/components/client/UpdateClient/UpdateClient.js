@@ -16,7 +16,7 @@ const UpdateClient = (props) => {
   };
 
   const update_client = async (e) => {
-   
+    setShowSpinner(true)
     e.preventDefault();
     const { adresse } = e.target.elements;
     // let details = {
@@ -35,12 +35,12 @@ const UpdateClient = (props) => {
     axios.put('https://fr33dz.pythonanywhere.com/api/client/'+props.data.id+"/", data)
     .then(response => {
       setClient({ client: response })  
-      setShowSpinner(!showSpinner)
+      setShowSpinner(false)
       alert('Client updated successfully');  
     })
     .catch(function (error) {
       if (error.response) {
-        setShowSpinner(!showSpinner)
+        setShowSpinner(false)
         let errorMsg = ""
         for (const property in error.response.data) {
           errorMsg += `${property}: ${error.response.data[property]}\n`;
@@ -62,19 +62,30 @@ const UpdateClient = (props) => {
 
         <div className="row">
           <div className="col">
-            <label>Uploaded image</label>
-            <input type="file" onChange={handleImageUpload} className="form-control" />
-            {/* {image && <img src={URL.createObjectURL(image)} alt="uploaded image" />} */}
-          </div>
-          <div className="col">
             <label>Adresse</label>
             <textarea type="text" id="adresse" className="form-control" placeholder="Adresse" required defaultValue={props?.data.adresse}/>
           </div>
         </div>
 
-        <br/>
+        <div className="row">
+          <div className="col">
+            <label>Image</label>
+            <input type="file" accept="image/*" onChange={handleImageUpload} className="form-control" required/>
+            <div style={{textAlign:'center'}}>
 
-        
+              {props?.data.image && !image ? 
+                <img style={{marginTop: '0.5rem', width: '20%'}} defaultValue={props?.data.image} alt="image" />
+                : 
+                image && <img style={{marginTop: '0.5rem', maxWidth: '10rem'}} src={URL.createObjectURL(image)} alt="uploaded image" /> 
+
+              }
+              {/* {image && <img style={{marginTop: '0.5rem', width: '20%'}} defaultValue={props?.data.image} alt="uploaded image" />} */}
+
+            </div>
+          </div>
+        </div>
+
+        <br/>
         <div style={{textAlign: 'center'}}>
           <button type="submit" className="btn btn-primary">Update Client</button>
         </div>

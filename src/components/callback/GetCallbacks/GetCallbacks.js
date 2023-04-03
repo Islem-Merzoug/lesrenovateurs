@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 import axios from 'axios'; 
 import { useTable } from 'react-table';
-import "./GetCallbacks.css";
 import { Link,useHistory  } from 'react-router-dom';
 
 const GetCallbacks = () => {

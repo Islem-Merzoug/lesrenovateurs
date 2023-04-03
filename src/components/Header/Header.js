@@ -23,7 +23,7 @@ function Header() {
     localStorage.removeItem('token')
     navigate('/Signup', { replace: true });
     window.location.reload(false);
-    
+    alert('You logged out !')
   }
   return (
     <div className="header">
@@ -31,8 +31,8 @@ function Header() {
       <nav className="nav">
         <ul>
         
-          <li><Link to="/CreateJobber">Rejoindre le réseau</Link></li>
-          <li><Link to="/MakeAnAppointment">Prendre un rendez vous</Link></li>
+        <li><Link to="/MakeAnAppointment">Prendre un rendez vous</Link></li>
+        <li><Link to="/CreateMission">Creer une Mission</Link></li>
           <li><Link to="/Signup">Signup</Link></li>
 
           { !isExpired && isLogged ? (

@@ -25,7 +25,7 @@ const CreateJobber = (props) => {
   }
 
   const createJobber = async (e) => {
-    setShowSpinner(!showSpinner)
+    setShowSpinner(true)
 
     e.preventDefault();
     const { prenom, nom, email, password, competences, diplomes, permis, vehicules, niveau_etudes, villes,
@@ -83,7 +83,7 @@ const CreateJobber = (props) => {
         .then(response => {
           setJobber({ jobber: response })   
           navigate('/Profil', { replace: true });
-          setShowSpinner(!showSpinner)
+          setShowSpinner(false);
 
 
         }).catch(function (error) {
@@ -93,7 +93,7 @@ const CreateJobber = (props) => {
               errorMsg += `${property}: ${error.response.data[property]}\n`;
             }
             alert(errorMsg);
-            setShowSpinner(!showSpinner)
+            setShowSpinner(false);
 
           } 
         });
@@ -119,7 +119,7 @@ const CreateJobber = (props) => {
         .then(response => {
           setJobber({ jobber: response })  
           navigate('/Profil', { replace: true });
-          setShowSpinner(!showSpinner);
+          setShowSpinner(false);
           window.location.reload(false);  
           alert('Jobber Created successfully');  
 
@@ -131,7 +131,7 @@ const CreateJobber = (props) => {
               errorMsg += `${property}: ${error.response.data[property]}\n`;
             }
             alert(errorMsg);
-            setShowSpinner(!showSpinner)
+            setShowSpinner(false);
 
           } 
         });
@@ -145,15 +145,6 @@ const CreateJobber = (props) => {
         <form  onSubmit={createJobber}>
 
               <div className="row">
-                <div className="col">
-                  <label>Uploaded image</label>
-                  <input type="file" onChange={handleImageUpload} className="form-control"/>
-                  {/* {image && <img src={URL.createObjectURL(image)} alt="uploaded image" />} */}
-                </div>
-
-
-
-
                 <div className="col">
                   <label>Prénom</label>
                   <input type="text" id="prenom" className="form-control" placeholder="Prénom" required/>
@@ -189,8 +180,6 @@ const CreateJobber = (props) => {
               <div className="row">
                 <div className="col">
                   <label>Permis</label>
-                  {/* <input label="Permis" id="permis" type="text" className="form-control" placeholder="Permis" required/> */}
-
                   <select id="permis" name="permis" className="form-control">
                     <option value="Permis auto - catégorie B">Permis auto - catégorie B</option>
                     <option value="Permis cyclomoteur - catégorie AM">Permis cyclomoteur - catégorie AM</option>
@@ -198,7 +187,6 @@ const CreateJobber = (props) => {
                     <option value="Permis professionnels - catégories C et D">Permis professionnels - catégories C et D</option>
                     <option value="Permis remorque - catégorie E">Permis remorque - catégorie E</option>
                   </select>
-
                 </div>
                 <div className="col">
                   <label>Vehicules</label>
@@ -216,8 +204,18 @@ const CreateJobber = (props) => {
                   <input type="text" id="villes" className="form-control" placeholder="Villes" required/>
                 </div>
               </div>
-              <br/>
 
+              <div className="row">
+                <div className="col">
+                  <label>Uploaded image</label>
+                  <input type="file" onChange={handleImageUpload} className="form-control" required/>
+                  <div style={{textAlign:'center'}}>
+                    {image && <img style={{marginTop: '0.5rem', maxWidth: '10rem'}} src={URL.createObjectURL(image)} alt="uploaded image" />}
+                  </div>
+                </div>
+              </div>
+
+              <br/>
               <div className="row">
                 <div className="col">
                   <label>Is Entreprise ? - if not, so it will be a personal jobber ! </label><br/>
@@ -230,7 +228,7 @@ const CreateJobber = (props) => {
                     <div className="row">
                       <div className="col">
                         <label>Adresse</label>
-                        <input type="text" id="adresse" className="form-control" placeholder="Adresse" required/>
+                        <textarea type="text" id="adresse" className="form-control" placeholder="Adresse" required/>
                       </div>
                       <div className="col">
                         <label>Numero Siret</label>
@@ -252,8 +250,6 @@ const CreateJobber = (props) => {
                     <div className="row">
                       <div className="col">
                         <label>statut_juridique</label>
-                        {/* <input type="text" id="statut_juridique" className="form-control" placeholder="Atatut juridique" required/> */}
-
                         <select id="statut_juridique" name="Statut Juridique" className="form-control">
                           <option value="Auto-entreprise / micro entreprise avec option TVA">Auto-entreprise / micro entreprise avec option TVA</option>
                           <option value="Auto-entreprise / micro entreprise sans option TVA">Auto-entreprise / micro entreprise sans option TVA</option>
@@ -265,14 +261,15 @@ const CreateJobber = (props) => {
 
                     </div>
 
-                    <br/>
                   </>
                   ) : (
                   <>
                   </>
                   )
               }
+              
 
+              <br/>
               <div style={{textAlign: 'center'}}>
                 <button type="submit" className="btn btn-primary">Create Jobber</button>
               </div>
@@ -280,15 +277,7 @@ const CreateJobber = (props) => {
                 {showSpinner && <Spinner />}
               </div>
               
-
             </form>
- 
-
-
-
-
-
-
 
     </div>
   );

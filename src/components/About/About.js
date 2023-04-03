@@ -59,7 +59,7 @@ const About = () => {
           });
 
           
-          axios.get('https://fr33dz.pythonanywhere.com/api/client/'+1)
+          axios.get('https://fr33dz.pythonanywhere.com/api/client/'+clientId)
           .then(res => {
             setClient(res.data)
             console.log(client)
@@ -83,14 +83,12 @@ const About = () => {
     return (
         <div>
             {hasJobber && <UpdateJobber data={jobber}/>}
-           
             <br/>
+
             {hasEntreprise && <UpdateEntreprise data={entreprise}/>}
-            
             <br/>
 
             {hasClient && <UpdateClient data={client}/>}
-            
             <br/>
 
         </div>
