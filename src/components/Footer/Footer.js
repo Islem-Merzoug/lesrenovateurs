@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 const Footer = () => {
   return (
-    <Container fluid className="bg-white text-dark py-3" style={{padding :'5% 5%', marginTop :'2rem'}}>
+    <Container fluid className="bg-white text-dark py-3" style={{margin :'5% 5%', marginTop :'2rem'}}>
       <Row>
         <Col xs={12} md={3}>
           <h5>Les renovateurs</h5>
@@ -37,6 +37,7 @@ const Footer = () => {
           </ul>
         </Col>
       </Row>
+      © {new Date().getFullYear()} MALT. ALL RIGHTS RESERVED.
     </Container>
   );
 };

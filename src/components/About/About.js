@@ -27,7 +27,7 @@ const About = () => {
         .then(res => {
           setJobber(res.data)
           console.log('jobber:', jobber)
-          setHasJobber(!hasJobber)
+          setHasJobber(true)
           })
           .catch(function (error) {
             if (error.response) {
@@ -45,7 +45,7 @@ const About = () => {
         .then(res => {
           setEntreprise(res.data)
           console.log(entreprise)
-          setHasEntreprise(!hasEntreprise)
+          setHasEntreprise(true)
           })
           .catch(function (error) {
             if (error.response) {
@@ -63,7 +63,7 @@ const About = () => {
           .then(res => {
             setClient(res.data)
             console.log(client)
-            setHasClient(!hasClient)
+            setHasClient(true)
             })
             .catch(function (error) {
               if (error.response) {

@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
-import { Tab, Tabs } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import CreateCallback from '../../components/callback/CreateCallback/CreateCallback';
-import CreateRdv from '../../components/rdv/CreateRdv/CreateRdv';
-import './MakeAnAppointment.css';
+import React, { useState } from "react";
+import { Tab, Tabs } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import CreateCallback from "../../components/callback/CreateCallback/CreateCallback";
+import CreateRdv from "../../components/rdv/CreateRdv/CreateRdv";
+import "./MakeAnAppointment.css";
 
 function MakeAnAppointment() {
-  const [key, setKey] = useState('Rdv');
+  const [key, setKey] = useState("Rdv");
 
   return (
-    <div style={{margin: '2%'}}>
-
+    <div style={{ margin: "2%" }}>
       <Tabs
         defaultActiveKey="Rdv"
         id="uncontrolled-tab-example"
@@ -18,14 +17,12 @@ function MakeAnAppointment() {
         onSelect={(k) => setKey(k)}
         className="mb-3"
       >
-
-        <Tab eventKey="Rdv" title="Prendre un Rendez-vous">
-          <CreateRdv/>
+        <Tab eventKey="Rdv" title="📅 Prendre un rendez-vous">
+          <CreateRdv />
         </Tab>
-        <Tab eventKey="Callback" title="Appel Immédiat">
-          <CreateCallback/>
+        <Tab eventKey="Callback" title="📞 Appel Immédiat">
+          <CreateCallback />
         </Tab>
-
       </Tabs>
     </div>
   );

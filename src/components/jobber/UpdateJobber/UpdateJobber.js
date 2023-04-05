@@ -7,7 +7,7 @@ const UpdateJobber = (props) => {
   const [jobber, setJobber] = useState();
   const [showSpinner, setShowSpinner] = useState(false);
   const [image, setImage] = useState(null);
-
+  console.log('props:', props)
   const handleImageUpload = (e) => {
     console.log(e.target.files[0])
     setImage(e.target.files[0]);
