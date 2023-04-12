@@ -1,16 +1,15 @@
 {
   "files": {
     "main.css": "/lesrenovateurs/static/css/main.cc5604df.css",
-    "main.js": "/lesrenovateurs/static/js/main.012ab3db.js",
+    "main.js": "/lesrenovateurs/static/js/main.28817e86.js",
     "static/js/787.92512792.chunk.js": "/lesrenovateurs/static/js/787.92512792.chunk.js",
-    "static/media/logo.svg": "/lesrenovateurs/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/lesrenovateurs/index.html",
     "main.cc5604df.css.map": "/lesrenovateurs/static/css/main.cc5604df.css.map",
-    "main.012ab3db.js.map": "/lesrenovateurs/static/js/main.012ab3db.js.map",
+    "main.28817e86.js.map": "/lesrenovateurs/static/js/main.28817e86.js.map",
     "787.92512792.chunk.js.map": "/lesrenovateurs/static/js/787.92512792.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.cc5604df.css",
-    "static/js/main.012ab3db.js"
+    "static/js/main.28817e86.js"
   ]
 }
