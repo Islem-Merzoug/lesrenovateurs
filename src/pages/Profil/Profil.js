@@ -10,8 +10,10 @@ import GetCallbacks from "../../components/callback/GetCallbacks/GetCallbacks";
 import GetRdvs from "../../components/rdv/GetRdvs/GetRdvs";
 import About from "../../components/About/About";
 import GetMissions from "../../components/Mission/GetMissions/GetMissions";
+import { authservice } from "../../services/auth.service";
 
 function Profil() {
+  console.log(authservice.isJobber());
   return (
     <div style={{ margin: "2%" }}>
       <Tab.Container id="left-tabs-example" defaultActiveKey="first">
@@ -21,15 +23,20 @@ function Profil() {
               <Nav.Item>
                 <Nav.Link eventKey="first">About</Nav.Link>
               </Nav.Item>
+              {authservice.isJobber() ? (
+                <Nav.Item>
+                  <Nav.Link eventKey="fourth">My missions</Nav.Link>
+                </Nav.Item>
+              ) : (
+                <></>
+              )}
+
               {/* <Nav.Item>
               <Nav.Link eventKey="second">My appointements</Nav.Link>
             </Nav.Item> */}
               {/* <Nav.Item>
               <Nav.Link eventKey="third">My callbacks</Nav.Link>
             </Nav.Item> */}
-              <Nav.Item>
-                <Nav.Link eventKey="fourth">My missions</Nav.Link>
-              </Nav.Item>
             </Nav>
           </Col>
 

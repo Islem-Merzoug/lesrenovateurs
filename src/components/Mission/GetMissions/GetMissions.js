@@ -23,8 +23,8 @@ const GetMissions = () => {
       )
       .then((res) => {
         debugger;
+        console.log(res);
         setMissions(res.data.mission_info.missions);
-        console.log(res.data.mission_info.missions);
       })
       .catch((error) => {
         if (error.response) {
@@ -55,28 +55,28 @@ const GetMissions = () => {
     //   });
   };
 
-  const handleRemove = (id) => {
-    console.log(id);
-    axios
-      .delete("https://fr33dz.pythonanywhere.com/api/mission/" + id, {
-        headers: {
-          Authorization: `Token ${localStorage.getItem("token")}`,
-        },
-      })
-      .then((res) => {
-        setMissions(missions.filter((row) => row.id !== id));
-        alert("Mission deleted successfully");
-      })
-      .catch((error) => {
-        if (error.response) {
-          let errorMsg = "";
-          for (const property in error.response.data) {
-            errorMsg += `${property}: ${error.response.data[property]}\n`;
-          }
-          alert(errorMsg);
-        }
-      });
-  };
+  // const handleRemove = (id) => {
+  //   console.log(id);
+  //   axios
+  //     .delete("https://fr33dz.pythonanywhere.com/api/mission/" + id, {
+  //       headers: {
+  //         Authorization: `Token ${localStorage.getItem("token")}`,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       setMissions(missions.filter((row) => row.id !== id));
+  //       alert("Mission deleted successfully");
+  //     })
+  //     .catch((error) => {
+  //       if (error.response) {
+  //         let errorMsg = "";
+  //         for (const property in error.response.data) {
+  //           errorMsg += `${property}: ${error.response.data[property]}\n`;
+  //         }
+  //         alert(errorMsg);
+  //       }
+  //     });
+  // };
 
   return (
     <div className="App">

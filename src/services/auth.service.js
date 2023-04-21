@@ -42,6 +42,13 @@ let isClient = () => {
   }
 };
 
+let isJobber = () => {
+  if (localStorage.getItem("profilType") === "jobber") {
+    let token = localStorage.getItem("token");
+    return !!token;
+  }
+};
+
 let decodeToken = (token) => {
   var decoded = jwt_decode(token);
 
@@ -55,4 +62,5 @@ export const authservice = {
   isLogged,
   decodeToken,
   isClient,
+  isJobber,
 };
