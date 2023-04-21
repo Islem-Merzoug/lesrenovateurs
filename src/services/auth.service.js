@@ -1,41 +1,58 @@
 import jwt_decode from "jwt-decode";
 
-let saveToken = (token, user) => {
-    // localStorage.setItem('token', token)
-    // localStorage.setItem('userId', 1)
-    // localStorage.setItem('entrepriseId', 1)
-    // localStorage.setItem('clientId', 2)
-    // localStorage.setItem('jobberId', 1)
+let saveToken = (res) => {
+  debugger;
+  localStorage.setItem("token", res.data.token);
+  localStorage.setItem("user", res.data.user.id);
+  localStorage.setItem("username", res.data.user.username);
+  localStorage.setItem("email", res.data.user.email);
+  localStorage.setItem("profilId", res.data.profil.id);
+  localStorage.setItem("profilType", res.data.profil.type);
 
-    //senario client
-    localStorage.setItem('token', token)
-    localStorage.setItem('user', user.id)
-    localStorage.setItem('username', user.username)
-    localStorage.setItem('email', user.email)
-    localStorage.setItem('entrepriseId', 1)
-    localStorage.setItem('clientId', 2)
-    // localStorage.setItem('jobberId', 1)
+  localStorage.setItem(
+    "entreprise_info",
+    res.data.profil.infos.entreprise_info
+  );
+  console.log(
+    "res.data.infos.entreprise_info:",
+    res.data.profil.infos.entreprise_info
+  );
+};
 
-    console.log(localStorage.getItem('token'))
-}
-    
 let logout = () => {
-    localStorage.removeItem('token')
-}
-    
-let isLogged = () => {    
-    let token = localStorage.getItem('token');
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+  localStorage.removeItem("username");
+  localStorage.removeItem("email");
+  localStorage.removeItem("profilId");
+  localStorage.removeItem("profilType");
+  localStorage.removeItem("entreprise_info");
+};
 
-    return !!token
-}    
+let isLogged = () => {
+  let token = localStorage.getItem("token");
+
+  return !!token;
+};
+
+let isClient = () => {
+  if (localStorage.getItem("profilType") === "client") {
+    let token = localStorage.getItem("token");
+    return !!token;
+  }
+};
 
 let decodeToken = (token) => {
-    var decoded = jwt_decode(token);
- 
-    console.log(decoded);
-    return decoded;
-}
+  var decoded = jwt_decode(token);
+
+  console.log(decoded);
+  return decoded;
+};
 
 export const authservice = {
-    saveToken, logout, isLogged, decodeToken
-}
+  saveToken,
+  logout,
+  isLogged,
+  decodeToken,
+  isClient,
+};

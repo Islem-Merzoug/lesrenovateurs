@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Carousel, Tab, Tabs } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
+import Appointment from "../../pages/Appointment/Appointment";
 
 const Home = () => {
   const [key, setKey] = useState("data");
@@ -14,19 +15,30 @@ const Home = () => {
           <div
             style={{
               fontWeight: "bold",
-              fontSize: "2.2rem",
-              marginBottom: "2.5rem",
+              fontSize: "3vw",
+              marginBottom: "2.5vw",
             }}
           >
-            Entreprises & freelances étaient faits pour se rencontrer
+            Les entreprises et les indépendants ont été créés pour se
+            rencontrer.
           </div>
-          Trouvez le talent parfait pour propulser vos projets
+          <div
+            style={{
+              fontWeight: "bold",
+              fontSize: "2vw",
+              marginBottom: "2.5vw",
+            }}
+          >
+            Trouvez le talent idéal pour mener à bien vos projets.{" "}
+          </div>
+          <br />
         </div>
+
         <div className="col">
           <img
-            src="https://images.prismic.io/malt-cms-marketing/f84b318c-7035-4212-b80b-36b71238cc77_FR_Homepage_Hero_GRDF.png?auto=enhance,format&w=632&h=391"
+            src="https://images.pexels.com/photos/6419128/pexels-photo-6419128.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             alt="uploaded image"
-            width="500"
+            width="100%"
           />
         </div>
       </div>
@@ -35,55 +47,140 @@ const Home = () => {
       <br />
 
       <div className="row" style={{ textAlign: "center" }}>
-        <div style={{ fontWeight: "bold", fontSize: "2.5rem" }}>
-          Malt c’est avant tout une communauté
+        <div style={{ fontWeight: "bold", fontSize: "3.5vw" }}>
+          Les bricoleurs c’est avant tout une communauté <br />
         </div>
         <div>
-          Où freelances et entreprises se retrouvent sur une marketplace, pour
-          collaborer en toute simplicité.
+          Les entreprises et les indépendants peuvent se réunir sur une place de
+          marché pour travailler ensemble facilement.
         </div>
+        <br />
+        <br />
+        <div style={{ fontWeight: "bold", fontSize: "3.5vw" }}>
+          Comment cela fonctionne-t-il ?
+        </div>
+
+        <div className="accordion" id="accordionPanelsStayOpenExample">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
+              <button
+                className="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseOne"
+                aria-expanded="true"
+                aria-controls="panelsStayOpen-collapseOne"
+              >
+                1. Décrivez vos besoins.
+              </button>
+            </h2>
+            <div
+              id="panelsStayOpen-collapseOne"
+              className="accordion-collapse collapse show"
+            >
+              <div className="accordion-body">
+                Tout projet, quelle que soit sa taille, peut bénéficier de notre
+                assistance, qu'il s'agisse de travaux d'entretien et de
+                réparation de base ou de rénovations fantaisistes.
+              </div>
+            </div>
+          </div>
+          <div className="accordion-item">
+            <h2 className="accordion-header">
+              <button
+                className="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseTwo"
+                aria-expanded="false"
+                aria-controls="panelsStayOpen-collapseTwo"
+              >
+                2. Nous trouverons des solutions personnalisées pour vous.
+              </button>
+            </h2>
+            <div
+              id="panelsStayOpen-collapseTwo"
+              className="accordion-collapse collapse"
+            >
+              <div className="accordion-body">
+                Consultez instantanément votre devis et planifiez vos services.
+                Demandez et comparez les prix de professionnels réputés dans
+                votre région.
+              </div>
+            </div>
+          </div>
+          <div className="accordion-item">
+            <h2 className="accordion-header">
+              <button
+                className="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseThree"
+                aria-expanded="false"
+                aria-controls="panelsStayOpen-collapseThree"
+              >
+                3. Nous vous couvrons du début à la fin.
+              </button>
+            </h2>
+            <div
+              id="panelsStayOpen-collapseThree"
+              className="accordion-collapse collapse"
+            >
+              <div className="accordion-body">
+                Vous êtes couvert par notre garantie de bonheur lorsque vous
+                effectuez une réservation et un paiement par l'intermédiaire
+                d'Angi. Nous vous fournirons une protection limitée contre les
+                dommages en plus de la couverture complète du prix d'achat de
+                vos projets.
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <br />
+        <br />
 
         <div className="col">
           <img
             src="https://images.prismic.io/malt-cms-marketing/fdcae09e-f5b3-4d2b-9e69-82b268e4b68e_50K.svg?auto=enhance,format&w=140&h=140"
             alt="uploaded image"
-            width="150"
+            width="70%"
           />
-          <div style={{ fontWeight: "bold", fontSize: "1.8rem" }}>
-            50K entreprises
+          <div style={{ fontWeight: "bold", fontSize: "2.5vw" }}>
+            Une centaine d'entreprises
           </div>
-          <div>À la recherche de freelances confirmés</div>
+          <div>Recherche des freelances indépendants expérimentés</div>
         </div>
 
         <div className="col">
           <img
             src="https://images.prismic.io/malt-cms-marketing/c5b343ff-925d-407f-bd26-b4ec671b5622_390K.svg?auto=enhance,format&w=140&h=140"
             alt="uploaded image"
-            width="150"
+            width="70%"
           />
-          <div style={{ fontWeight: "bold", fontSize: "1.8rem" }}>
-            +400K freelances
+          <div style={{ fontWeight: "bold", fontSize: "2.5vw" }}>
+            Une centaine de freelances
           </div>
-          <div>Aux multiples compétences</div>
+          <div>Compétences multiples nécessaires</div>
         </div>
 
         <div className="col">
           <img
             src="https://images.prismic.io/malt-cms-marketing/a00f2381-5182-43b1-9d11-3bda9cca5088_1.svg?auto=enhance,format&w=140&h=140"
             alt="uploaded image"
-            width="150"
+            width="70%"
           />
-          <div style={{ fontWeight: "bold", fontSize: "1.8rem" }}>
+          <div style={{ fontWeight: "bold", fontSize: "2.5vw" }}>
             1 solution dédiée
           </div>
-          <div>Pensée et conçue pour collaborer</div>
+          <div>élaborées et conçue pour travailler ensemble</div>
         </div>
       </div>
 
       <br />
       <br />
       <br />
-      <div style={{ textAlign: "center" }}>
+      {/* <div style={{ textAlign: "center" }}>
         <Tabs
           defaultActiveKey="data"
           id="uncontrolled-tab-example"
@@ -212,7 +309,7 @@ const Home = () => {
             </div>
           </Tab>
         </Tabs>
-      </div>
+      </div> */}
       <br />
       <br />
       <br />
@@ -221,29 +318,165 @@ const Home = () => {
         <div
           style={{
             fontWeight: "bold",
-            fontSize: "2.5rem",
-            marginBottom: "3rem",
+            fontSize: "3.4vw",
+            marginBottom: "3.5vw",
             textAlign: "center",
           }}
         >
-          Vous allez adorer cette nouvelle façon de collaborer
+          Vous allez adorer cette nouvelle façon de travailler avec nous.
         </div>
 
         <div className="row">
+          <div
+            style={{
+              fontWeight: "bold",
+              fontSize: "2.8vw",
+              marginBottom: "3.5vw",
+            }}
+          >
+            Trouvez le bon bricoleur en deux clics:
+          </div>
           <div className="col">
-            <div
-              style={{
-                fontWeight: "bold",
-                fontSize: "1.8rem",
-                marginBottom: "2.5rem",
-              }}
-            >
-              Boostez votre carrière freelance
+            <div>
+              Trouvez le bricoleur parfait pour vos projets en un rien de temps
+              grâce à lesbricoleurs.fr ! Plus besoin de perdre du temps à
+              chercher dans les annuaires ou à demander à vos amis. Avec notre
+              plateforme en ligne, vous pouvez trouver le bricoleur idéal en
+              seulement deux clics. Que vous ayez besoin d'un plombier, d'un
+              électricien, d'un menuisier ou de tout autre artisan, notre
+              service de recherche facile à utiliser vous permet de trouver
+              rapidement le bon professionnel pour le travail. Alors ne perdez
+              plus de temps et rejoignez lesbricoleurs.fr dès maintenant pour
+              trouver le bricoleur parfait en deux clics !
+              <br />
+              <br />
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={() => navigate("/CreateMission")}
+              >
+                Trouver votre bricoleur
+              </button>
             </div>
+          </div>
+          <div className="col" style={{ textAlign: "center" }}>
+            <img
+              src="https://images.pexels.com/photos/11890960/pexels-photo-11890960.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              alt="uploaded image"
+              width="350"
+            />
+          </div>
+        </div>
+        <br />
+        <br />
+        <div className="row">
+          <div
+            style={{
+              fontWeight: "bold",
+              fontSize: "2.8vw",
+              marginBottom: "3.5vw",
+            }}
+          >
+            Boostez votre carrière de bricoleur freelance:
+          </div>
+          <div className="col" style={{ textAlign: "center" }}>
+            <img
+              src="https://images.pexels.com/photos/4116193/pexels-photo-4116193.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              alt="uploaded image"
+              width="350"
+            />
+          </div>
+          <div className="col">
+            <div>
+              Vous êtes un boulanger talentueux et passionné à la recherche de
+              nouveaux défis pour faire avancer votre carrière de freelance. La
+              plateforme dont vous avez besoin est lesbricoleurs.fr. Vous
+              pourrez évoluer rapidement et franchir de nouvelles étapes dans
+              votre carrière grâce aux centaine de projets mis à votre
+              disposition. En tant qu'artisan freelance, vous pouvez travailler
+              sur des projets intéressants et variés tout en développant votre
+              clientèle. Avec lesbricoleurs.fr, vous pouvez exploiter pleinement
+              votre potentiel et réaliser des projets de bricolage qui dépassent
+              toutes vos attentes. N'attendez plus pour rejoindre la communauté
+              lesbricoleurs.fr et vivre une expérience de bricolage lucrative et
+              passionnante !
+              <br />
+              <br />
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={() => navigate("/Signup")}
+              >
+                Découvrir notre solution
+              </button>
+            </div>
+          </div>
+        </div>
+        <br />
+        <br />
+        <div className="row">
+          <div
+            style={{
+              fontWeight: "bold",
+              fontSize: "2.8vw",
+              marginBottom: "3.5vw",
+            }}
+          >
+            Boostez votre carrière de d'entreprise de bricolage:
+          </div>
+          <div className="col">
+            <div>
+              Vous cherchez à faire décoller votre carrière dans le domaine de
+              l'entreprise de bricolage ? Ne cherchez pas plus loin que
+              lesbricoleurs.fr ! Notre plateforme innovante met à votre
+              disposition une multitude de projets passionnants pour les
+              professionnels du bricolage, avec des opportunités de croissance
+              et de développement professionnel à chaque étape du chemin.
+              Rejoignez notre communauté dynamique de talents et commencez à
+              booster votre carrière dès aujourd'hui avec lesbricoleurs.fr !
+              <br />
+              <br />
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={() => navigate("/Signup")}
+              >
+                Découvrir notre solution
+              </button>
+            </div>
+          </div>
+          <div className="col" style={{ textAlign: "center" }}>
+            <img
+              src="https://images.pexels.com/photos/3785693/pexels-photo-3785693.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              alt="uploaded image"
+              width="350"
+            />
+          </div>
+        </div>
+        <br />
+        <br />
+        <div className="row">
+          <div
+            style={{
+              fontWeight: "bold",
+              fontSize: "2.8vw",
+              marginBottom: "3.5vw",
+            }}
+          >
+            Boostez votre carrière freelance:
+          </div>
+          <div className="col" style={{ textAlign: "center" }}>
+            <img
+              src="https://images.pexels.com/photos/1669754/pexels-photo-1669754.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              alt="uploaded image"
+              width="350"
+            />
+          </div>
+          <div className="col">
             <div>
               Recevez des offres de missions en adéquation avec vos compétences
               et communiquez directement avec 50 000 clients potentiels issus de
-              tous les secteurs. Grâce à Malt, réduisez vos tâches
+              tous les secteurs. Grâce à lesbricoleurs, réduisez vos tâches
               administratives à l'aide de nos outils en ligne ; faites-vous
               payer en 3 jours ouvrables à compter de la fin de la mission ; et
               gardez l'esprit tranquille : toutes vos missions sont
@@ -256,145 +489,9 @@ const Home = () => {
               <button
                 type="button"
                 className="btn btn-primary"
-                onClick={() => navigate("/Signup", { replace: true })}
+                onClick={() => navigate("/Appointment")}
               >
-                Rejoindre la communauté
-              </button>
-            </div>
-          </div>
-          <div className="col" style={{ textAlign: "center" }}>
-            <img
-              src="https://images.prismic.io/malt-cms-marketing/1bd45af1-d7de-430c-a4a8-9c530e8b0dc6_2022_REBRAND_WEBSITE_HOME_CONTENT-1.png?auto=enhance,format&w=938&h=514"
-              alt="uploaded image"
-              width="600"
-            />
-          </div>
-        </div>
-
-        <br />
-        <br />
-
-        <div className="row">
-          <div className="col" style={{ textAlign: "center" }}>
-            <img
-              src="https://images.prismic.io/malt-cms-marketing/5dfe75b2-3104-4ad2-a14f-757be59cf1e4_2022_REBRAND_WEBSITE_HOME_CONTENT-2.png?auto=enhance,format&w=938&h=514"
-              alt="uploaded image"
-              width="600"
-            />
-          </div>
-
-          <div className="col">
-            <div
-              style={{
-                fontWeight: "bold",
-                fontSize: "1.8rem",
-                marginBottom: "2.5rem",
-              }}
-            >
-              Trouvez le bon profil en deux clics
-            </div>
-            <div>
-              Partez à la recherche de votre expert parmi nos 400 000 talentueux
-              freelances ou entrez en contact avec les meilleurs profils
-              disponibles pour votre projet. Consultez les avis et expériences,
-              et discutez directement avec les freelances pour pouvoir les
-              recruter en quelques clics. Nous vous garantissons une
-              collaboration simple et sécurisée, avec des contrats et un
-              processus de paiement entièrement digitalisés. Trouvez votre
-              expert, nous nous occupons du reste.
-              <br />
-              <br />
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => navigate("/Mission", { replace: true })}
-              >
-                Trouver le freelance parfait
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <br />
-        <br />
-        <div className="row">
-          <div className="col">
-            <div
-              style={{
-                fontWeight: "bold",
-                fontSize: "1.8rem",
-                marginBottom: "2.5rem",
-              }}
-            >
-              Découvrir notre solution
-            </div>
-            <div>
-              Vous collaborez régulièrement avec plusieurs freelances ?
-              Simplifiez et regroupez toutes vos activités avec des freelances
-              dans un seul outil. Suivez et gérez les dépenses de votre
-              structure, obtenez des aperçus de missions et suivez vos contrats
-              en cours, en temps réel. Une solution de gestion à 360° pour tous
-              vos freelances, qu'ils soient déjà sur Malt ou non.
-              <br />
-              <br />
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => navigate("/", { replace: true })}
-              >
-                Découvrir notre solution
-              </button>
-            </div>
-          </div>
-          <div className="col" style={{ textAlign: "center" }}>
-            <img
-              src="https://images.prismic.io/malt-cms-marketing/33ad36c6-30f9-40f4-ab1d-ee18f7793148_2022_REBRAND_WEBSITE_HOME_CONTENT-3.png?auto=enhance,format&w=938&h=514"
-              alt="uploaded image"
-              width="600"
-            />
-          </div>
-        </div>
-
-        <br />
-        <br />
-        <div className="row">
-          <div className="col" style={{ textAlign: "center" }}>
-            <img
-              src="https://images.prismic.io/malt-cms-marketing/5dfe75b2-3104-4ad2-a14f-757be59cf1e4_2022_REBRAND_WEBSITE_HOME_CONTENT-2.png?auto=enhance,format&w=938&h=514"
-              alt="uploaded image"
-              width="600"
-            />
-          </div>
-
-          <div className="col">
-            <div
-              style={{
-                fontWeight: "bold",
-                fontSize: "1.8rem",
-                marginBottom: "2.5rem",
-              }}
-            >
-              Nous vous appellons
-            </div>
-            <div>
-              Partez à la recherche de votre expert parmi nos 400 000 talentueux
-              freelances ou entrez en contact avec les meilleurs profils
-              disponibles pour votre projet. Consultez les avis et expériences,
-              et discutez directement avec les freelances pour pouvoir les
-              recruter en quelques clics. Nous vous garantissons une
-              collaboration simple et sécurisée, avec des contrats et un
-              processus de paiement entièrement digitalisés. Trouvez votre
-              expert, nous nous occupons du reste.
-              <br />
-              <br />
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() =>
-                  navigate("/MakeAnAppointment", { replace: true })
-                }
-              >
-                Trouver le freelance parfait
+                Trouver le revovateur parfait
               </button>
             </div>
           </div>
@@ -408,38 +505,38 @@ const Home = () => {
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src="https://images.prismic.io/malt-cms-marketing/5dfe75b2-3104-4ad2-a14f-757be59cf1e4_2022_REBRAND_WEBSITE_HOME_CONTENT-2.png?auto=enhance,format&w=938&h=514"
+            src="https://images.pexels.com/photos/4692281/pexels-photo-4692281.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
             alt="First slide"
           />
           <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            {/* <h3>First slide label</h3>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> */}
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src="https://images.prismic.io/malt-cms-marketing/5dfe75b2-3104-4ad2-a14f-757be59cf1e4_2022_REBRAND_WEBSITE_HOME_CONTENT-2.png?auto=enhance,format&w=938&h=514"
+            src="https://images.pexels.com/photos/14953886/pexels-photo-14953886.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             alt="Second slide"
           />
 
           <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            {/* <h3>Second slide label</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> */}
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src="https://images.prismic.io/malt-cms-marketing/33ad36c6-30f9-40f4-ab1d-ee18f7793148_2022_REBRAND_WEBSITE_HOME_CONTENT-3.png?auto=enhance,format&w=938&h=514"
+            src="https://images.pexels.com/photos/14515144/pexels-photo-14515144.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             alt="Third slide"
           />
 
           <Carousel.Caption>
-            <h3>Third slide label</h3>
+            {/* <h3>Third slide label</h3>
             <p>
               Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p>
+            </p> */}
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
@@ -456,24 +553,26 @@ const Home = () => {
             marginBottom: "2.5rem",
           }}
         >
-          Rejoignez Malt, la communauté qui enchaîne les succès
+          Rejoignez lesbricoleurs, la communauté qui enchaîne les succès
         </div>
 
         <div className="row" style={{ marginRight: "28%", marginLeft: "28%" }}>
-          <div className="col">
+          <div className="col" style={{ marginBottom: "1rem" }}>
             <button
               type="button"
               className="btn btn-primary"
-              onClick={() => navigate("/Mission", { replace: true })}
+              onClick={() => navigate("/Mission")}
             >
-              Je cherche des freelances
+              Je cherche des bricoleurs
             </button>
           </div>
-          <div className="col" style={{ textAlign: "center" }}>
+          <br />
+
+          <div className="col">
             <button
               type="button"
               className="btn btn-light"
-              onClick={() => navigate("/Signup", { replace: true })}
+              onClick={() => navigate("/Signup")}
             >
               Rejoindre la communauté
             </button>

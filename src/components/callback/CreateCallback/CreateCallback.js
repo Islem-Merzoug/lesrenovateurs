@@ -1,43 +1,19 @@
 import React, { useEffect, useState } from "react";
 
 import axios from "axios";
-import { Spinner } from "react-bootstrap";
+import { Alert, Spinner } from "react-bootstrap";
 import Calendly from "react-calendly";
 import CalendlyWidget from "../../CalendlyWidget";
-// import EmbedCalendly from "react-embed-calendly";
-import { InlineWidget } from "react-calendly";
+import { useNavigate } from "react-router-dom";
 
 const CreateCallback = () => {
   const [callback, setCallback] = useState();
   const [showSpinner, setShowSpinner] = useState(false);
-  const [calendlyScript, setCalendlyScript] = useState("");
-
-  let prefill = {
-    email: "test@test.com",
-    firstName: "Jon",
-    lastName: "Snow",
-    name: "Jon Snow",
-    guests: ["janedoe@example.com", "johndoe@example.com"],
-    customAnswers: {
-      a1: "a1",
-      a2: "a2",
-      a3: "a3",
-      a4: "a4",
-      a5: "a5",
-      a6: "a6",
-      a7: "a7",
-      a8: "a8",
-      a9: "a9",
-      a10: "a10",
-    },
-    date: new Date(Date.now() + 86400000),
-  };
-
-  useEffect(() => {
-    setCalendlyScript("https://assets.calendly.com/assets/external/widget.js");
-  }, []);
+  let navigate = useNavigate();
 
   const create_Callback = async (e) => {
+    setShowSpinner(true);
+
     e.preventDefault();
     const { prenom, nom, numero, appel, date_appel } = e.target.elements;
     let details = {
@@ -49,9 +25,17 @@ const CreateCallback = () => {
     };
     console.log(details);
     axios
-      .post("https://fr33dz.pythonanywhere.com/api/callback/", details)
-      .then((response) => setCallback({ callback: response }))
+      .post("https://fr33dz.pythonanywhere.com/api/callback/", details, {
+        headers: {
+          Authorization: `Token ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        setShowSpinner(false);
+        alert("Callback Created successfully");
+      })
       .catch(function (error) {
+        setShowSpinner(false);
         if (error.response) {
           let errorMsg = "";
           for (const property in error.response.data) {
@@ -63,23 +47,13 @@ const CreateCallback = () => {
   };
   return (
     <div className="">
-      {/* <div
-        class="calendly-inline-widget"
-        data-url="https://calendly.com/i-merzoug16/15min"
-        style={{ minwidth: "320px", height: "630px" }}
-      ></div>
-      
-      <script src={calendlyScript}></script> */}
-      {/* <CalendlyWidget /> */}
-      {/* <EmbedCalendly url="https://calendly.com/i-merzoug16/15min" /> */}
-      <InlineWidget
-        url="https://calendly.com/i-merzoug16/15min"
-        prefill={prefill}
-      />
-      Pas le temps aujourd’hui ? Choisissez le meilleur moment pour vous, et
-      notre équipe vous rappelle sur le créneau de votre choix : [Vous ne voyez
-      pas le calendrier s’afficher ci-dessous ? Cliquez ici pour voir notre
-      agenda en ligne]
+      <div style={{ fontSize: "2.5vmin" }}>
+        Nous savons que votre quotidien est chargé, alors notre équipe de choc
+        💪 est disponible par téléphone du lundi au vendredi de 9h à 18h, en
+        journée continue, même entre 12h00 et 14h00.
+      </div>
+      <br />
+      <br />
       <form onSubmit={create_Callback}>
         <div className="row">
           <div className="col">
@@ -113,7 +87,7 @@ const CreateCallback = () => {
             />
           </div>
           <div className="col">
-            <label>numero</label>
+            <label>Numéro de téléphone</label>
             <input
               type="tel"
               id="numero"
@@ -132,13 +106,35 @@ const CreateCallback = () => {
         </div>
 
         <br />
-        <div style={{ textAlign: "center" }}>
-          <button type="submit" className="btn btn-primary">
-            Create Callback
-          </button>
+        <br />
+        <div className="row">
+          <div className="col" style={{ fontSize: "1.1rem" }}>
+            {/* <input type="checkbox" checked={false} /> */}
+            En cochant cette case vous acceptez
+            <a href=""> la politique de confidentialité de Comptasanté</a>
+          </div>
         </div>
-        <div style={{ textAlign: "center", margin: "0.5rem" }}>
-          {showSpinner && <Spinner />}
+
+        <br />
+
+        <div className="row" style={{ textAlign: "center" }}>
+          <div className="col">
+            <button
+              type="button"
+              className="btn btn-outline-secondary"
+              onClick={() => navigate(-1)}
+            >
+              Précédent
+            </button>
+          </div>
+          <div className="col">
+            <button type="submit" className="btn btn-primary">
+              Create Callback
+            </button>
+            <div style={{ textAlign: "center", margin: "0.5rem" }}>
+              {showSpinner && <Spinner />}
+            </div>
+          </div>
         </div>
       </form>
     </div>

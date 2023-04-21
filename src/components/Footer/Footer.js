@@ -1,9 +1,13 @@
-import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
 
 const Footer = () => {
   return (
-    <Container fluid className="bg-white text-dark py-3" style={{margin :'5% 5%', marginTop :'2rem'}}>
+    <Container
+      fluid
+      className="bg-white text-dark py-3"
+      style={{ margin: "5% 5%", marginTop: "2rem" }}
+    >
       <Row>
         <Col xs={12} md={3}>
           <h5>Les renovateurs</h5>
@@ -15,7 +19,7 @@ const Footer = () => {
         <Col xs={12} md={3}>
           <h5>Pour les entreprises</h5>
           <ul className="list-unstyled">
-            <li>Pourquoi Malt ?</li>
+            <li>Pourquoi lesbricoleurs ?</li>
             <li>Marketplace de freelances</li>
             <li>Solution de gestion de freelances</li>
           </ul>
@@ -23,7 +27,7 @@ const Footer = () => {
         <Col xs={12} md={3}>
           <h5>Pour les freelances</h5>
           <ul className="list-unstyled">
-            <li>Pourquoi Malt ?</li>
+            <li>Pourquoi lesbricoleurs ?</li>
             <li>Community & Programmes</li>
             <li>Fonctionnalités produit</li>
           </ul>
@@ -37,7 +41,7 @@ const Footer = () => {
           </ul>
         </Col>
       </Row>
-      © {new Date().getFullYear()} MALT. ALL RIGHTS RESERVED.
+      © {new Date().getFullYear()} lesbricoleurs. ALL RIGHTS RESERVED.
     </Container>
   );
 };

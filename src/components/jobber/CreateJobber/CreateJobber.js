@@ -3,203 +3,152 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
+import { authservice } from "../../../services/auth.service";
 
 const CreateJobber = (props) => {
   const [jobber, setJobber] = useState();
   const [entreprise, setEntreprise] = useState();
+  const [user, setUser] = useState();
   let navigate = useNavigate();
   const [showSpinner, setShowSpinner] = useState(false);
 
-  const [isJobberCreated, setIsJobberCreated] = useState(false);
-  const [isToggledAsEntreprise, setIsToggledAsEntreprise] = useState(false);
+  const [isEntreprise, setIsEntreprise] = useState(false);
 
   const [image, setImage] = useState(null);
+  const dataa = new FormData();
 
   const handleImageUpload = (e) => {
     setImage(e.target.files[0]);
   };
 
   const handleChange = () => {
-    setIsToggledAsEntreprise(!isToggledAsEntreprise);
+    setIsEntreprise(!isEntreprise);
   };
 
   const createJobber = async (e) => {
+    debugger;
     setShowSpinner(true);
 
     e.preventDefault();
-    const {
-      prenom,
-      nom,
-      email,
-      password,
-      competences,
-      diplomes,
-      permis,
-      vehicules,
-      niveau_etudes,
-      villes,
-      adresse,
-      statut_juridique,
-      numero_siret,
-      numero_tva,
-      tva,
-    } = e.target.elements;
-    let jobberDetails = {
-      prenom: prenom.value,
-      nom: nom.value,
-      email: email.value,
-      password: password.value,
-      competences: competences.value,
-      diplomes: diplomes.value,
-      permis: permis.value,
-      vehicules: vehicules.value,
-      niveau_etudes: niveau_etudes.value,
-      villes: villes.value,
-      user: props.propValue.data.user.id,
-      entreprise_id: entreprise,
-      image: image,
-    };
 
-    const data = new FormData();
-    data.append("prenom", prenom.value);
-    data.append("nom", nom.value);
-    data.append("email", email.value);
-    data.append("password", password.value);
-    data.append("competences", competences.value);
-    data.append("diplomes", diplomes.value);
-    data.append("permis", permis.value);
-    data.append("vehicules", vehicules.value);
-    data.append("niveau_etudes", niveau_etudes.value);
-    data.append("villes", villes.value);
-    data.append("user", props.propValue.data.user.id);
-    data.append("entreprise_id", entreprise);
-    data.append("image", image);
+    axios
+      .post("https://fr33dz.pythonanywhere.com/api/register/", props.propValue)
+      .then((res) => {
+        console.log("regitser:", res);
+        setUser(res);
 
-    if (isToggledAsEntreprise) {
-      let entrepriseDetails = {
-        nom: nom.value,
-        adresse: adresse.value,
-        statut_juridique: statut_juridique.value,
-        numero_siret: numero_siret.value,
-        numero_tva: numero_tva.value,
-        tva: tva.value,
-      };
+        const {
+          nom,
+          email,
+          competences,
+          diplomes,
+          permis,
+          vehicules,
+          niveau_etudes,
+          villes,
+          adresse,
+          statut_juridique,
+          numero_siret,
+          numero_tva,
+          tva,
+        } = e.target.elements;
 
-      console.log(jobberDetails);
-      console.log(entrepriseDetails);
-      axios
-        .post(
-          "https://fr33dz.pythonanywhere.com/api/entreprise/",
-          entrepriseDetails
-        )
-        .then((response) => {
-          setEntreprise(response.data);
-          console.log(entreprise.id);
+        dataa.append("competences", competences.value);
+        dataa.append("diplomes", diplomes.value);
+        dataa.append("permis", permis.value);
+        dataa.append("vehicules", vehicules.value);
+        dataa.append("niveau_etudes", niveau_etudes.value);
+        dataa.append("villes", villes.value);
+        dataa.append("user_id", res.data.user.id);
+        dataa.append("entreprise_id", entreprise);
+        dataa.append("image", image);
+        console.log(competences.value);
+        setJobber(dataa);
+        if (isEntreprise) {
+          let entrepriseDetails = {
+            nom: nom.value,
+            adresse: adresse.value,
+            statut_juridique: statut_juridique.value,
+            numero_siret: numero_siret.value,
+            numero_tva: numero_tva.value,
+            tva: tva.value,
+          };
+          console.log(entrepriseDetails);
 
-          axios
-            .post(
-              "https://fr33dz.pythonanywhere.com/api/jobber/",
-              jobberDetails
-            )
-            .then((response) => {
-              setJobber({ jobber: response });
-              navigate("/Profil", { replace: true });
-              setShowSpinner(false);
-            })
-            .catch(function (error) {
-              if (error.response) {
-                let errorMsg = "";
-                for (const property in error.response.data) {
-                  errorMsg += `${property}: ${error.response.data[property]}\n`;
-                }
-                alert(errorMsg);
-                setShowSpinner(false);
-              }
-            });
-        })
-        .catch(function (error) {
-          if (error.response) {
-            let errorMsg = "";
-            for (const property in error.response.data) {
-              errorMsg += `${property}: ${error.response.data[property]}\n`;
-            }
-            alert(errorMsg);
-            setShowSpinner(!showSpinner);
+          handleCreateEntreprise(entrepriseDetails);
+        }
+      })
+      .catch(function (error) {
+        if (error.response) {
+          let errorMsg = "";
+          for (const property in error.response.data) {
+            errorMsg += `${property}: ${error.response.data[property]}\n`;
           }
-        });
-    } else {
-      console.log(jobberDetails);
-
-      axios
-        .post("https://fr33dz.pythonanywhere.com/api/jobber/", data)
-        .then((response) => {
-          setJobber({ jobber: response });
-          navigate("/Profil", { replace: true });
+          alert("3: " + errorMsg);
+          console.log("3", errorMsg);
           setShowSpinner(false);
-          window.location.reload(false);
-          alert("Jobber Created successfully");
-        })
-        .catch(function (error) {
-          if (error.response) {
-            let errorMsg = "";
-            for (const property in error.response.data) {
-              errorMsg += `${property}: ${error.response.data[property]}\n`;
-            }
-            alert(errorMsg);
-            setShowSpinner(false);
-          }
-        });
-    }
+        }
+      });
   };
+
+  const handleCreateEntreprise = (data) => {
+    debugger;
+    axios
+      .post("https://fr33dz.pythonanywhere.com/api/entreprise/", data, {
+        headers: {
+          Authorization: `Token ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        handleCreateJobber(jobber);
+      })
+      .catch(function (error) {
+        if (error.response) {
+          let errorMsg = "";
+          for (const property in error.response.data) {
+            errorMsg += `${property}: ${error.response.data[property]}\n`;
+          }
+          alert("1", +errorMsg);
+          console.log("1", errorMsg);
+          setShowSpinner(false);
+          //delete the registred user if any probleme happends
+        }
+      });
+  };
+
+  const handleCreateJobber = (data) => {
+    debugger;
+    axios
+      .post("https://fr33dz.pythonanywhere.com/api/jobber/", data, {
+        headers: {
+          Authorization: `Token ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        authservice.saveToken(user);
+        navigate("/Profil");
+        setShowSpinner(false);
+        window.location.reload(false);
+        alert("Jobber Created successfully");
+      })
+      .catch((error) => {
+        if (error.response) {
+          let errorMsg = "";
+          for (const property in error.response.data) {
+            errorMsg += `${property}: ${error.response.data[property]}\n`;
+          }
+          alert("2", +errorMsg);
+          console.log("2", errorMsg);
+          setShowSpinner(false);
+          //delete the registred user if any probleme happends
+          //delete the registred entreprise if any probleme happends
+        }
+      });
+  };
+
   return (
     <div className="">
       <form onSubmit={createJobber}>
-        <div className="row">
-          <div className="col">
-            <label>Prénom</label>
-            <input
-              type="text"
-              id="prenom"
-              className="form-control"
-              placeholder="Prénom"
-              required
-            />
-          </div>
-          <div className="col">
-            <label>Nom</label>
-            <input
-              type="text"
-              id="nom"
-              className="form-control"
-              placeholder="Nom"
-              required
-            />
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col">
-            <label>Email</label>
-            <input
-              type="email"
-              id="email"
-              className="form-control"
-              placeholder="Email"
-              required
-            />
-          </div>
-          <div className="col">
-            <label>Password</label>
-            <input
-              type="password"
-              id="password"
-              className="form-control"
-              placeholder="Password"
-              required
-            />
-          </div>
-        </div>
-
         <div className="row">
           <div className="col">
             <label>Competences</label>
@@ -248,6 +197,7 @@ const CreateJobber = (props) => {
             <label>Vehicules</label>
             <input
               type="text"
+              name="vehicules"
               id="vehicules"
               className="form-control"
               placeholder="Vehicules"
@@ -309,22 +259,22 @@ const CreateJobber = (props) => {
             <br />
             <input
               type="checkbox"
-              checked={isToggledAsEntreprise}
+              checked={isEntreprise}
               onChange={handleChange}
             />
           </div>
         </div>
 
-        {isToggledAsEntreprise ? (
+        {isEntreprise ? (
           <>
             <div className="row">
               <div className="col">
-                <label>Adresse</label>
-                <textarea
+                <label>Nom</label>
+                <input
                   type="text"
-                  id="adresse"
+                  id="nom"
                   className="form-control"
-                  placeholder="Adresse"
+                  placeholder="Nom"
                   required
                 />
               </div>
@@ -365,6 +315,17 @@ const CreateJobber = (props) => {
 
             <div className="row">
               <div className="col">
+                <label>Adresse</label>
+                <textarea
+                  type="text"
+                  id="adresse"
+                  className="form-control"
+                  placeholder="Adresse"
+                  required
+                />
+              </div>
+
+              <div className="col">
                 <label>Statut Juridique</label>
                 <select
                   id="statut_juridique"
@@ -390,7 +351,11 @@ const CreateJobber = (props) => {
         <br />
         <div className="row" style={{ textAlign: "center" }}>
           <div className="col">
-            <button type="button" className="btn btn-outline-secondary">
+            <button
+              type="button"
+              className="btn btn-outline-secondary"
+              onClick={() => navigate(-1)}
+            >
               Précédent
             </button>
           </div>

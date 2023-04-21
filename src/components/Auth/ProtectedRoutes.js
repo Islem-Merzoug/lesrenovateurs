@@ -2,7 +2,6 @@ import { Navigate, Outlet } from "react-router-dom";
 import { authservice } from "../../services/auth.service";
 
 const useAuth = () => {
-  
   const isLogged = authservice.isLogged();
 
   return isLogged;
