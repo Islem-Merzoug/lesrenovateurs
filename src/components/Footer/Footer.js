@@ -19,7 +19,7 @@ const Footer = () => {
         <Col xs={12} md={3}>
           <h5>Pour les entreprises</h5>
           <ul className="list-unstyled">
-            <li>Pourquoi lesbricoleurs ?</li>
+            <li>Pourquoi lesrénovateurs ?</li>
             <li>Marketplace de freelances</li>
             <li>Solution de gestion de freelances</li>
           </ul>
@@ -27,7 +27,7 @@ const Footer = () => {
         <Col xs={12} md={3}>
           <h5>Pour les freelances</h5>
           <ul className="list-unstyled">
-            <li>Pourquoi lesbricoleurs ?</li>
+            <li>Pourquoi lesrénovateurs ?</li>
             <li>Community & Programmes</li>
             <li>Fonctionnalités produit</li>
           </ul>
@@ -41,7 +41,7 @@ const Footer = () => {
           </ul>
         </Col>
       </Row>
-      © {new Date().getFullYear()} lesbricoleurs. ALL RIGHTS RESERVED.
+      © {new Date().getFullYear()} lesrénovateurs. ALL RIGHTS RESERVED.
     </Container>
   );
 };

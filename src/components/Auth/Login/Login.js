@@ -35,7 +35,7 @@ const Login = () => {
           icon: "success",
           dangerMode: true,
         });
-        navigate("/Home");
+        navigate("/Profil");
         window.location.reload(false);
       })
       .catch(function (error) {
@@ -58,7 +58,7 @@ const Login = () => {
             className="col"
             style={{ fontWeight: "bold", fontSize: "1.5rem" }}
           >
-            Les bricoleurs
+            Les rénovateurs 
           </div>
           <br />
           <div className="col">
@@ -98,7 +98,7 @@ const Login = () => {
             />
           </div>
 
-          <div className="row">
+          {/* <div className="row">
             <div className="col" style={{ fontSize: "0.9rem" }}>
               <a href="">J'ai perdu mon mot de passe.</a>
             </div>
@@ -106,10 +106,10 @@ const Login = () => {
 
           <div className="row">
             <div className="col" style={{ fontSize: "0.8rem" }}>
-              En entrant sur lesbricoleurs vous confirmez que vous acceptez les
+              En entrant sur lesrénovateurs  vous confirmez que vous acceptez les
               <a href=""> conditions générales.</a>
             </div>
-          </div>
+          </div> */}
 
           <br />
           <br />

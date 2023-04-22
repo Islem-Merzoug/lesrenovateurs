@@ -48,7 +48,7 @@ function Header2() {
       sticky="top"
       style={{ background: "white", padding: "3px 3% 3px 3%" }}
     >
-      <Navbar.Brand href="/">Les bricoleurs</Navbar.Brand>
+      <Navbar.Brand href="/">lesrénovateurs</Navbar.Brand>
       <Navbar.Toggle
         aria-controls="responsive-navbar-nav"
         onClick={handleMobileMenuToggle}

@@ -125,11 +125,11 @@ const CreateJobber = (props) => {
         },
       })
       .then((response) => {
+        setShowSpinner(false);
         authservice.saveToken(user);
         navigate("/Profil");
-        setShowSpinner(false);
-        window.location.reload(false);
         alert("Jobber Created successfully");
+        window.location.reload(false);
       })
       .catch((error) => {
         if (error.response) {

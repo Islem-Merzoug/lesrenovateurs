@@ -48,7 +48,7 @@ const Home = () => {
 
       <div className="row" style={{ textAlign: "center" }}>
         <div style={{ fontWeight: "bold", fontSize: "3.5vw" }}>
-          Les bricoleurs c’est avant tout une communauté <br />
+          Les rénovateurs c’est avant tout une communauté <br />
         </div>
         <div>
           Les entreprises et les indépendants peuvent se réunir sur une place de
@@ -339,14 +339,14 @@ const Home = () => {
           <div className="col">
             <div>
               Trouvez le bricoleur parfait pour vos projets en un rien de temps
-              grâce à lesbricoleurs.fr ! Plus besoin de perdre du temps à
+              grâce à lesrénovateurs.fr ! Plus besoin de perdre du temps à
               chercher dans les annuaires ou à demander à vos amis. Avec notre
               plateforme en ligne, vous pouvez trouver le bricoleur idéal en
               seulement deux clics. Que vous ayez besoin d'un plombier, d'un
               électricien, d'un menuisier ou de tout autre artisan, notre
               service de recherche facile à utiliser vous permet de trouver
               rapidement le bon professionnel pour le travail. Alors ne perdez
-              plus de temps et rejoignez lesbricoleurs.fr dès maintenant pour
+              plus de temps et rejoignez lesrénovateurs.fr dès maintenant pour
               trouver le bricoleur parfait en deux clics !
               <br />
               <br />
@@ -390,16 +390,16 @@ const Home = () => {
             <div>
               Vous êtes un boulanger talentueux et passionné à la recherche de
               nouveaux défis pour faire avancer votre carrière de freelance. La
-              plateforme dont vous avez besoin est lesbricoleurs.fr. Vous
+              plateforme dont vous avez besoin est lesrénovateurs.fr. Vous
               pourrez évoluer rapidement et franchir de nouvelles étapes dans
               votre carrière grâce aux centaine de projets mis à votre
               disposition. En tant qu'artisan freelance, vous pouvez travailler
               sur des projets intéressants et variés tout en développant votre
-              clientèle. Avec lesbricoleurs.fr, vous pouvez exploiter pleinement
-              votre potentiel et réaliser des projets de bricolage qui dépassent
-              toutes vos attentes. N'attendez plus pour rejoindre la communauté
-              lesbricoleurs.fr et vivre une expérience de bricolage lucrative et
-              passionnante !
+              clientèle. Avec lesrénovateurs.fr, vous pouvez exploiter
+              pleinement votre potentiel et réaliser des projets de bricolage
+              qui dépassent toutes vos attentes. N'attendez plus pour rejoindre
+              la communauté lesrénovateurs.fr et vivre une expérience de
+              bricolage lucrative et passionnante !
               <br />
               <br />
               <button
@@ -428,12 +428,12 @@ const Home = () => {
             <div>
               Vous cherchez à faire décoller votre carrière dans le domaine de
               l'entreprise de bricolage ? Ne cherchez pas plus loin que
-              lesbricoleurs.fr ! Notre plateforme innovante met à votre
+              lesrénovateurs.fr ! Notre plateforme innovante met à votre
               disposition une multitude de projets passionnants pour les
               professionnels du bricolage, avec des opportunités de croissance
               et de développement professionnel à chaque étape du chemin.
               Rejoignez notre communauté dynamique de talents et commencez à
-              booster votre carrière dès aujourd'hui avec lesbricoleurs.fr !
+              booster votre carrière dès aujourd'hui avec lesrénovateurs.fr !
               <br />
               <br />
               <button
@@ -476,7 +476,7 @@ const Home = () => {
             <div>
               Recevez des offres de missions en adéquation avec vos compétences
               et communiquez directement avec 50 000 clients potentiels issus de
-              tous les secteurs. Grâce à lesbricoleurs, réduisez vos tâches
+              tous les secteurs. Grâce à lesrénovateurs, réduisez vos tâches
               administratives à l'aide de nos outils en ligne ; faites-vous
               payer en 3 jours ouvrables à compter de la fin de la mission ; et
               gardez l'esprit tranquille : toutes vos missions sont
@@ -553,7 +553,7 @@ const Home = () => {
             marginBottom: "2.5rem",
           }}
         >
-          Rejoignez lesbricoleurs, la communauté qui enchaîne les succès
+          Rejoignez lesrénovateurs, la communauté qui enchaîne les succès
         </div>
 
         <div className="row" style={{ marginRight: "28%", marginLeft: "28%" }}>
@@ -563,7 +563,7 @@ const Home = () => {
               className="btn btn-primary"
               onClick={() => navigate("/Mission")}
             >
-              Je cherche des bricoleurs
+              Je cherche des rénovateurs
             </button>
           </div>
           <br />

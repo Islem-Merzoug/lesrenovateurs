@@ -45,7 +45,7 @@ const Signup = () => {
             className="col"
             style={{ fontWeight: "bold", fontSize: "1.5rem" }}
           >
-            Les bricoleurs
+            Les rénovateurs 
           </div>
           <br />
           <div className="col">
@@ -172,7 +172,7 @@ const Signup = () => {
 
               <div className="row">
                 <div className="col" style={{ fontSize: "0.8rem" }}>
-                  lesbricoleurs collecte vos données pour la création et la
+                  lesrénovateurs collecte vos données pour la création et la
                   gestion de votre compte. En savoir plus sur la{" "}
                   <a href="">protection de vos données.</a>
                   <br />
@@ -187,7 +187,7 @@ const Signup = () => {
                 <div className="col" style={{ fontSize: "1.1rem" }}>
                   {/* <input type="checkbox" checked={false} /> */}
                   Je ne souhaite pas recevoir les actualités news et événements
-                  de lesbricoleurs
+                  de lesrénovateurs 
                 </div>
               </div>
 

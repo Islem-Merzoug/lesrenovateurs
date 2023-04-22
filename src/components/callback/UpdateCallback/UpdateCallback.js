@@ -94,7 +94,7 @@ const UpdateCallback = (props) => {
             />
           </div>
           <div className="col">
-            <label>numero</label>
+          <label>Numéro de téléphone</label>
             <input
               type="tel"
               id="numero"

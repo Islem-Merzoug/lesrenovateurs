@@ -93,7 +93,7 @@ const CreateCallback = () => {
               id="numero"
               className="form-control"
               placeholder="Numero"
-              pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+              pattern="[0-9]{10}"
             />
           </div>
         </div>
@@ -105,15 +105,15 @@ const CreateCallback = () => {
           </div>
         </div>
 
-        <br />
+        {/* <br />
         <br />
         <div className="row">
           <div className="col" style={{ fontSize: "1.1rem" }}>
-            {/* <input type="checkbox" checked={false} /> */}
+            //<input type="checkbox" checked={false} />
             En cochant cette case vous acceptez
             <a href=""> la politique de confidentialité de Comptasanté</a>
           </div>
-        </div>
+        </div> */}
 
         <br />
 

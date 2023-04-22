@@ -92,20 +92,20 @@ const CreateRdv = () => {
   let prefill = {
     email: localStorage.getItem("email"),
     firstName: localStorage.getItem("username"),
-    name: localStorage.getItem("email"),
-    guests: ["janedoe@example.com", "johndoe@example.com"],
-    customAnswers: {
-      a1: "+213659819202",
-      a2: "BLBLA",
-      a3: 2,
-      a4: 3,
-      a5: "a5",
-      a6: "a6",
-      a7: "a7",
-      a8: "a8",
-      a9: "a9",
-      a10: "a10",
-    },
+    // name: localStorage.getItem("email"),
+    // guests: ["janedoe@example.com", "johndoe@example.com"],
+    // customAnswers: {
+    //   a1: "+213659819202",
+    //   a2: "BLBLA",
+    //   a3: 2,
+    //   a4: 3,
+    //   a5: "a5",
+    //   a6: "a6",
+    //   a7: "a7",
+    //   a8: "a8",
+    //   a9: "a9",
+    //   a10: "a10",
+    // },
   };
 
   useEffect(() => {
@@ -308,14 +308,14 @@ const CreateRdv = () => {
 
               <div className="row">
                 <div className="col">
-                  <label>Numéro</label>
+                <label>Numéro de téléphone</label>
                   <input
                     type="tel"
                     id="numero"
                     className="form-control"
                     placeholder="Numero"
-                    pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-                  />
+                    pattern="[0-9]{10}"
+                    />
                 </div>
               </div>
 

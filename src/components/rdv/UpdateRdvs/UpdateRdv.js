@@ -95,7 +95,7 @@ const UpdateRdv = (props) => {
             />
           </div>
           <div className="col">
-            <label>numero</label>
+            <label>Numéro de téléphone</label>
             <input
               type="tel"
               id="numero"
@@ -109,7 +109,7 @@ const UpdateRdv = (props) => {
 
         <div className="row">
           <div className="col">
-            <label>email</label> <br />
+            <label>Email</label> <br />
             <input
               type="email"
               id="email"
