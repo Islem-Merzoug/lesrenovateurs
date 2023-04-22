@@ -45,7 +45,7 @@ const Signup = () => {
             className="col"
             style={{ fontWeight: "bold", fontSize: "1.5rem" }}
           >
-            Les rénovateurs 
+            Les rénovateurs
           </div>
           <br />
           <div className="col">
@@ -170,7 +170,7 @@ const Signup = () => {
 
               <br />
 
-              <div className="row">
+              {/* <div className="row">
                 <div className="col" style={{ fontSize: "0.8rem" }}>
                   lesrénovateurs collecte vos données pour la création et la
                   gestion de votre compte. En savoir plus sur la{" "}
@@ -179,17 +179,17 @@ const Signup = () => {
                   En continuant votre inscription, vous acceptez nos conditions
                   générales.
                 </div>
-              </div>
+              </div> */}
 
-              <br />
+              {/* <br />
               <br />
               <div className="row">
                 <div className="col" style={{ fontSize: "1.1rem" }}>
-                  {/* <input type="checkbox" checked={false} /> */}
+                  //<input type="checkbox" checked={false} />
                   Je ne souhaite pas recevoir les actualités news et événements
-                  de lesrénovateurs 
+                  de lesrénovateurs
                 </div>
-              </div>
+              </div> */}
 
               <br />
 
